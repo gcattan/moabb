@@ -1,4 +1,7 @@
-from moabb.datasets.base import BaseDataset
+try:
+    from ...moabb.datasets.base import BaseDataset
+except:
+    from moabb.datasets.base import BaseDataset
 
 from mne.io import read_raw_edf
 from mne.channels import make_standard_montage

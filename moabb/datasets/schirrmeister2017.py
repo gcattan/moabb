@@ -2,11 +2,16 @@ import logging
 # import requests
 import numpy as np
 import re
-from moabb.datasets.base import BaseDataset
-from moabb.datasets import download as dl
+
 import h5py
 import mne
 
+try:
+    from ...moabb.datasets.base import BaseDataset
+    from ...moabb.datasets import download as dl
+except:
+    from moabb.datasets.base import BaseDataset
+    from moabb.datasets import download as dl
 
 log = logging.getLogger(__name__)
 

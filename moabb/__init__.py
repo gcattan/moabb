@@ -1,2 +1,5 @@
 # flake8: noqa
-from moabb.utils import set_log_level
+try:
+    from moabb.utils import set_log_level
+except:
+    from ..moabb.utils import set_log_level

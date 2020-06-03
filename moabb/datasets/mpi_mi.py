@@ -2,10 +2,14 @@
 Munich MI dataset
 """
 
-from moabb.datasets.base import BaseDataset
 import mne
 
-from moabb.datasets import download as dl
+try:
+    from ...moabb.datasets.base import BaseDataset
+    from ...moabb.datasets import download as dl
+except:
+    from moabb.datasets.base import BaseDataset
+    from moabb.datasets import download as dl
 
 DOWNLOAD_URL = 'https://zenodo.org/record/1217449/files/'
 

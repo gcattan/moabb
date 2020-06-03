@@ -3,8 +3,10 @@ from mne.io import RawArray
 from mne.channels import make_standard_montage
 import numpy as np
 
-from moabb.datasets.base import BaseDataset
-
+try:
+    from ...moabb.datasets.base import BaseDataset
+except:
+    from moabb.datasets.base import BaseDataset
 
 class FakeDataset(BaseDataset):
     """Fake Dataset for test purpose.

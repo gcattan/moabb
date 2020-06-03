@@ -3,10 +3,15 @@ import os
 import glob
 import numpy as np
 import datetime as dt
-from moabb.datasets.base import BaseDataset
-from moabb.datasets import download as dl
 from scipy.io import loadmat
 import zipfile
+
+try:
+    from ...moabb.datasets.base import BaseDataset
+    from ...moabb.datasets import download as dl
+except:
+    from moabb.datasets.base import BaseDataset
+    from moabb.datasets import download as dl
 
 EPFLP300_URL = 'http://documents.epfl.ch/groups/m/mm/mmspg/www/BCI/p300/'
 

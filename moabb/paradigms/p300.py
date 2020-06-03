@@ -6,9 +6,14 @@ import numpy as np
 import pandas as pd
 import logging
 
-from moabb.paradigms.base import BaseParadigm
-from moabb.datasets import utils
-from moabb.datasets.fake import FakeDataset
+try:
+    from ...moabb.paradigms.base import BaseParadigm
+    from ...moabb.datasets import utils
+    from ...moabb.datasets.fake import FakeDataset
+except:
+    from moabb.paradigms.base import BaseParadigm
+    from moabb.datasets import utils
+    from moabb.datasets.fake import FakeDataset
 
 log = logging.getLogger()
 
