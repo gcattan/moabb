@@ -818,7 +818,7 @@ class VirtualReality(BaseDataset):
         ================ ======= ======= ================ =============== =============== ===========
          Name             #Subj   #Chan   #Trials/class    Trials length   Sampling Rate   #Sessions
         ================ ======= ======= ================ =============== =============== ===========
-         VirtualReality   24      16      600 NT / 120 T   1s              512Hz           2
+         VirtualReality   21      16      600 NT / 120 T   1s              512Hz           2
         ================ ======= ======= ================ =============== =============== ===========
 
 
@@ -859,7 +859,7 @@ class VirtualReality(BaseDataset):
 
     def __init__(self, virtual_reality=False, screen_display=True):
         super().__init__(
-            subjects=list(range(1, 20 + 1)),
+            subjects=list(range(1, 21 + 1)),
             sessions_per_subject=1,
             events=dict(Target=2, NonTarget=1),
             code="P300-VR",
