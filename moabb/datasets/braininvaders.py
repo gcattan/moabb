@@ -7,6 +7,7 @@ from distutils.dir_util import copy_tree
 from warnings import warn
 
 import mne
+from moabb.datasets.utils import block_rep
 import numpy as np
 import pandas as pd
 import yaml
@@ -218,7 +219,7 @@ def _bi_get_subject_data(ds, subject):  # noqa: C901
                     Xbij = Xbi[:, start:end]
                     raw = mne.io.RawArray(data=Xbij, info=info, verbose=False)
                     sessions[session_name][
-                        "block_" + str(bi + 1) + "-repetition_" + str(j + 1)
+                        block_rep(bi + 1, j + 1)
                     ] = raw
 
     return sessions
@@ -923,22 +924,23 @@ class VirtualReality(BaseDataset):
         meta_select = []
         for block in block_list:
             for repetition in repetition_list:
+                run = block_rep(block, repetition)
                 X_select.append(
                     X[
                         meta["run"]
-                        == "block_" + str(block) + "-repetition_" + str(repetition)
+                        == run
                     ]
                 )
                 labels_select.append(
                     labels[
                         meta["run"]
-                        == "block_" + str(block) + "-repetition_" + str(repetition)
+                        == run
                     ]
                 )
                 meta_select.append(
                     meta[
                         meta["run"]
-                        == "block_" + str(block) + "-repetition_" + str(repetition)
+                        == run
                     ]
                 )
         X_select = np.concatenate(X_select)

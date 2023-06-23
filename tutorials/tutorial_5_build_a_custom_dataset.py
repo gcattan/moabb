@@ -10,6 +10,8 @@ Tutorial 5: Creating a dataset class
 from moabb.datasets import VirtualReality
 from moabb.datasets.braininvaders import bi2014a
 from moabb.datasets.shopping import GoShoppingDataset
+from moabb.datasets.shopping.bi_illiteracy import bi2014a_il, VirtualReality_il
+from moabb.datasets.utils import blocks_reps
 from moabb.paradigms.p300 import P300
 from pyriemann.classification import MDM
 from pyriemann.estimation import Covariances, ERPCovariances, XdawnCovariances
@@ -32,13 +34,11 @@ from moabb.paradigms import LeftRightImagery
 # The fake dataset is available on the
 # `Zenodo website <https://sandbox.zenodo.org/record/369543>`_
 
-def block_rep(blocks: list, reps: list):
-    return [f'block_{b}-repetition_{r}' for b in blocks for r in reps]
 
 class CustomDataset1(GoShoppingDataset):
     def __init__(self):
         biVR = VirtualReality(virtual_reality=True, screen_display=True)
-        runs =  block_rep([1,3], [1,2,3,4,5])
+        runs =  blocks_reps([1,3], [1,2,3,4,5])
         shopping_list = {
             1: (biVR, 1, 'VR', runs),
             2: (biVR, 2, 'VR', runs),
@@ -81,7 +81,7 @@ class CustomDataset3(GoShoppingDataset):
         )
 
 paradigm = P300()
-datasets = [CustomDataset3()]
+datasets = [bi2014a_il()]
 
 evaluation = WithinSessionEvaluation(
     paradigm=paradigm, datasets=datasets, overwrite=False, suffix="newdataset"
