@@ -1,9 +1,7 @@
 """
-Alex Motor imagery dataset.
+Build a custom dataset using subjects from other datasets.
 """
 
-from os import sched_rr_get_interval
-from mne.io import Raw
 from moabb.datasets.braininvaders import VirtualReality
 
 from .. import download as dl
@@ -40,29 +38,19 @@ class GoShoppingDataset(BaseDataset):
     def _get_single_subject_data(self, shopped_subject):
         """return data for a single subject"""
         dataset, subject, session, run = self.selection[shopped_subject]
+        if session is None:
+            sessions = dataset._get_single_subject_data(subject)
+            return sessions
+        if run is None:
+            runs = dataset._get_single_subject_data(subject)[session]
+            return {"session_0": runs}
         raw = dataset._get_single_subject_data(subject)[session][run]
-
         return {"session_0": {"run_0": raw}}
 
     def data_path(
         self, shopped_subject, path=None, force_update=False, update_path=None, verbose=None
     ):
         dataset, subject, _, _ = self.selection[shopped_subject]
-        return dataset.data_path(subject)
-
-class BiWithIlliteracy(GoShoppingDataset):
-    def __init__(self):
-        biVR = VirtualReality(virtual_reality=True, screen_display=True)
-        selection = {
-            0: (biVR, 1, 'VR', 'block_1-repetition_1'),
-            1: (biVR, 1, 'VR', 'block_1-repetition_2')
-        }
-        GoShoppingDataset.__init__(
-            self,
-            selection=selection,
-            events=dict(Target=2, NonTarget=1),
-            code="BI-ILL",
-            interval=[0, 1.0],
-            paradigm="p300"
-        )
- 
+        path = dataset.data_path(subject)
+        print("--------------------", path)
+        return path
