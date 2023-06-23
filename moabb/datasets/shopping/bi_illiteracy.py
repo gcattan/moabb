@@ -36,7 +36,7 @@ class bi2014a_il(GoShoppingDataset):
             paradigm="p300"
         )
 
-class VirtualRealiyt_il(GoShoppingDataset):
+class VirtualReality_il(GoShoppingDataset):
     def __init__(self):
         biVR = VirtualReality(virtual_reality=True, screen_display=True)
         runs =  block_rep([1,3], [1,2,3,4,5])
