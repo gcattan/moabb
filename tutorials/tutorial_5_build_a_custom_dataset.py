@@ -48,8 +48,7 @@ class BiWithIlliteracy(GoShoppingDataset):
             events=dict(Target=2, NonTarget=1),
             code="BI-ILL",
             interval=[0, 1.0],
-            paradigm="p300",
-            sessions_per_subject=1
+            paradigm="p300"
         )
  
 paradigm = P300()
