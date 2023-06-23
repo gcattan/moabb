@@ -39,8 +39,11 @@ class GoShoppingDataset(BaseDataset):
             self.shopping_list = shopping_list
         else:
             self.shopping_list = {}
+            subject_idx = 1
             for shoppingDataset in shopping_list:
-                self.shopping_list.update(shoppingDataset.shopping_list)
+                for value in shoppingDataset.shopping_list.values():
+                    self.shopping_list[subject_idx] = value
+                    subject_idx += 1
 
     def __init__(self, shopping_list: Union[dict, list], events: dict, code: str, interval: list, paradigm: str):
         self._set_shopping_list(shopping_list)
