@@ -37,17 +37,19 @@ def block_rep(blocks: list, reps: list):
 class BiWithIlliteracy(GoShoppingDataset):
     def __init__(self):
         biVR = VirtualReality(virtual_reality=True, screen_display=True)
-        selection = {
-            1: (biVR, 1, 'VR', block_rep([1,2], [1,2,3,4,5])),
-            2: (biVR, 2, 'VR', 'block_1-repetition_1'),
+        runs =  block_rep([1,3], [1,2,3,4,5])
+        shopping_list = {
+            1: (biVR, 1, 'VR', runs),
+            2: (biVR, 2, 'VR', runs),
         }
         GoShoppingDataset.__init__(
             self,
-            selection=selection,
+            shopping_list=shopping_list,
             events=dict(Target=2, NonTarget=1),
             code="BI-ILL",
             interval=[0, 1.0],
-            paradigm="p300"
+            paradigm="p300",
+            sessions_per_subject=1
         )
  
 paradigm = P300()
@@ -57,7 +59,7 @@ evaluation = WithinSessionEvaluation(
     paradigm=paradigm, datasets=datasets, overwrite=False, suffix="newdataset"
 )
 pipelines = {}
-pipelines["MDM"] = make_pipeline(ERPCovariances(), MDM(metric="riemann"))
+pipelines["MDM"] = make_pipeline(ERPCovariances(estimator="lwf"), MDM(metric="riemann"))
 scores = evaluation.process(pipelines)
 
 print(scores)

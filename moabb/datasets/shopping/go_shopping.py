@@ -22,13 +22,13 @@ class GoShoppingDataset(BaseDataset):
 
     @property
     def count(self):
-        return len(self.selection.keys())
+        return len(self.shopping_list.keys())
 
-    def __init__(self, selection: dict, events: dict, code: str, interval: list, paradigm: str):
-        self.selection = selection
+    def __init__(self, shopping_list: dict, events: dict, code: str, interval: list, paradigm: str, sessions_per_subject: int):
+        self.shopping_list = shopping_list
         super().__init__(
             subjects=list(range(1, self.count + 1)),
-            sessions_per_subject=1,
+            sessions_per_subject=sessions_per_subject,
             events=events,
             code=code,
             interval=interval,
@@ -37,27 +37,32 @@ class GoShoppingDataset(BaseDataset):
 
     def _get_single_subject_data(self, shopped_subject):
         """return data for a single subject"""
-        dataset, subject, session, runs = self.selection[shopped_subject]
-        if session is None:
-            sessions_data = dataset._get_single_subject_data(subject)
-            return sessions_data
-        if runs is None:
-            runs_data = dataset._get_single_subject_data(subject)[session]
-            return {"session_0": runs_data}
-        sessions_data = dataset._get_single_subject_data(subject)[session]
-        if isinstance(runs, list):
-            runs_data = {f"{run}": sessions_data[run] for run in runs}
-            return {"session_0": runs_data}
+        dataset, subject, sessions, runs = self.shopping_list[shopped_subject]
+        subject_data = dataset._get_single_subject_data(subject)
+        if sessions is None:
+            return subject_data
+        elif isinstance(sessions, list):
+            sessions_data = {f"{session}": subject_data[session] for session in sessions}
         else:
-            run_data = sessions_data[runs]
-            return {"session_0": { "run_0": run_data}}
+            sessions_data = {f"{sessions}": subject_data[sessions]}
+
+        if runs is None:
+            return sessions_data
+        elif isinstance(runs, list):
+            for session in sessions_data.keys():
+                sessions_data[session] = {f"{run}": sessions_data[session][run] for run in runs}
+            return sessions_data
+        else:
+            for session in sessions_data.keys():
+                sessions_data[session] = {f"{runs}": sessions_data[session][runs]}
+            return sessions_data
         
         
 
     def data_path(
         self, shopped_subject, path=None, force_update=False, update_path=None, verbose=None
     ):
-        dataset, subject, _, _ = self.selection[shopped_subject]
+        dataset, subject, _, _ = self.shopping_list[shopped_subject]
         path = dataset.data_path(subject)
         print("--------------------", path)
         return path
