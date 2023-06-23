@@ -4,6 +4,7 @@ import mne
 
 from moabb.datasets import Shin2017A, Shin2017B, VirtualReality
 from moabb.datasets.fake import FakeDataset, FakeVirtualRealityDataset
+from moabb.datasets.utils import block_rep
 from moabb.paradigms import P300
 
 
@@ -94,4 +95,4 @@ class Test_VirtualReality_Dataset(unittest.TestCase):
         repetition = 4
         _, _, ret = ds.get_block_repetition(P300(), [subject], [block], [repetition])
         assert ret.subject.unique()[0] == subject
-        assert ret.run.unique()[0] == f"block_{block}-repetition_{repetition}"
+        assert ret.run.unique()[0] == block_rep(block, repetition)

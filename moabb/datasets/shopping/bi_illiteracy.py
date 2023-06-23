@@ -1,8 +1,7 @@
+from ..utils import blocks_reps
 from ..braininvaders import bi2014a, VirtualReality
 from .go_shopping import GoShoppingDataset
 
-def block_rep(blocks: list, reps: list):
-    return [f'block_{b}-repetition_{r}' for b in blocks for r in reps]
 
 class bi2014a_il(GoShoppingDataset):
     def __init__(self):
@@ -39,7 +38,7 @@ class bi2014a_il(GoShoppingDataset):
 class VirtualReality_il(GoShoppingDataset):
     def __init__(self):
         biVR = VirtualReality(virtual_reality=True, screen_display=True)
-        runs =  block_rep([1,3], [1,2,3,4,5])
+        runs =  blocks_reps([1,3], [1,2,3,4,5])
         shopping_list = {
             1: (biVR, 1, 'VR', runs),
             2: (biVR, 2, ['VR','PC'], runs),
