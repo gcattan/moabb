@@ -821,7 +821,6 @@ class VirtualReality(BaseDataset):
          VirtualReality   21      16      600 NT / 120 T   1s              512Hz           2
         ================ ======= ======= ================ =============== =============== ===========
 
-
     We describe the experimental procedures for a dataset that we have made publicly
     available at https://doi.org/10.5281/zenodo.2605204 in mat (Mathworks, Natick, USA)
     and csv formats [1]_. This dataset contains electroencephalographic recordings on 21
@@ -835,6 +834,10 @@ class VirtualReality(BaseDataset):
     consisted of a passive head-mounted display, that is, a head-mounted display which
     does not include any electronics at the exception of a smartphone. A full description
     of the experiment is available at https://hal.archives-ouvertes.fr/hal-02078533.
+
+    /!\ WithinSubjectEvaluation is likely not the best way to evaluate this randomized dataset
+    Instead, you want to compare the performance at the block level. See the example
+    `plot_vr_pc_p300_different_epoch_size`
 
     Parameters
     ----------
