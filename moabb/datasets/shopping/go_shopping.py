@@ -46,7 +46,7 @@ class GoShoppingDataset(BaseDataset):
             return {"session_0": runs_data}
         sessions_data = dataset._get_single_subject_data(subject)[session]
         if isinstance(runs, list):
-            runs_data = {f"run_{i}": sessions_data[runs[i]] for i in range(len(runs))}
+            runs_data = {f"{run}": sessions_data[run] for run in runs}
             return {"session_0": runs_data}
         else:
             run_data = sessions_data[runs]
