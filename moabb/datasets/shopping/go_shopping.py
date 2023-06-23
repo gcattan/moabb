@@ -2,13 +2,12 @@
 Build a custom dataset using subjects from other datasets.
 """
 
+from ast import Or
+from typing import Union
 from moabb.datasets.braininvaders import VirtualReality
 
 from .. import download as dl
 from ..base import BaseDataset
-
-
-ALEX_URL = "https://zenodo.org/record/806023/files/"
 
 
 class GoShoppingDataset(BaseDataset):
@@ -24,11 +23,30 @@ class GoShoppingDataset(BaseDataset):
     def count(self):
         return len(self.shopping_list.keys())
 
-    def __init__(self, shopping_list: dict, events: dict, code: str, interval: list, paradigm: str, sessions_per_subject: int):
-        self.shopping_list = shopping_list
+    def _get_sessions_per_subject(self):
+        n_sessions = -1
+        for value in self.shopping_list.values():
+            sessions = value[2]
+            size = len(sessions) if isinstance(sessions, list) else 1
+            if n_sessions == -1:
+                n_sessions = size
+            else:
+                n_sessions = min(n_sessions, size)
+        return n_sessions
+
+    def _set_shopping_list(self, shopping_list: Union[dict,list]):
+        if isinstance(shopping_list, dict):
+            self.shopping_list = shopping_list
+        else:
+            self.shopping_list = {}
+            for shoppingDataset in shopping_list:
+                self.shopping_list.extend(shoppingDataset.shopping_list)
+
+    def __init__(self, shopping_list: Union[dict, list], events: dict, code: str, interval: list, paradigm: str):
+        self._set_shopping_list(shopping_list)
         super().__init__(
             subjects=list(range(1, self.count + 1)),
-            sessions_per_subject=sessions_per_subject,
+            sessions_per_subject=self._get_sessions_per_subject(),
             events=events,
             code=code,
             interval=interval,
