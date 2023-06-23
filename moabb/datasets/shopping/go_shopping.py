@@ -15,7 +15,7 @@ class GoShoppingDataset(BaseDataset):
     """TODO
     selection:
         {
-            subject1: (dataset1, subject, session, run)
+            subject1: (dataset1, subject, session, runs)
             subject2:
         }
     """
@@ -37,15 +37,22 @@ class GoShoppingDataset(BaseDataset):
 
     def _get_single_subject_data(self, shopped_subject):
         """return data for a single subject"""
-        dataset, subject, session, run = self.selection[shopped_subject]
+        dataset, subject, session, runs = self.selection[shopped_subject]
         if session is None:
-            sessions = dataset._get_single_subject_data(subject)
-            return sessions
-        if run is None:
-            runs = dataset._get_single_subject_data(subject)[session]
-            return {"session_0": runs}
-        raw = dataset._get_single_subject_data(subject)[session][run]
-        return {"session_0": {"run_0": raw}}
+            sessions_data = dataset._get_single_subject_data(subject)
+            return sessions_data
+        if runs is None:
+            runs_data = dataset._get_single_subject_data(subject)[session]
+            return {"session_0": runs_data}
+        sessions_data = dataset._get_single_subject_data(subject)[session]
+        if isinstance(runs, list):
+            runs_data = {f"run_{i}": sessions_data[runs[i]] for i in range(len(runs))}
+            return {"session_0": runs_data}
+        else:
+            run_data = sessions_data[runs]
+            return {"session_0": { "run_0": run_data}}
+        
+        
 
     def data_path(
         self, shopped_subject, path=None, force_update=False, update_path=None, verbose=None
