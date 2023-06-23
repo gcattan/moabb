@@ -40,7 +40,7 @@ class GoShoppingDataset(BaseDataset):
         else:
             self.shopping_list = {}
             for shoppingDataset in shopping_list:
-                self.shopping_list.extend(shoppingDataset.shopping_list)
+                self.shopping_list.update(shoppingDataset.shopping_list)
 
     def __init__(self, shopping_list: Union[dict, list], events: dict, code: str, interval: list, paradigm: str):
         self._set_shopping_list(shopping_list)
