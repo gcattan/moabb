@@ -37,26 +37,11 @@ class bi2014a_il(GoShoppingDataset):
 class VirtualReality_il(GoShoppingDataset):
     def __init__(self):
         biVR = VirtualReality(virtual_reality=True, screen_display=True)
-        # runs =  blocks_reps(range(12), range(5))
-        runs = None
-        #runs =  blocks_reps([1,3], [1,2,3,4,5])
-        runs2 =  blocks_reps([2,4], [1,2,3,4,5])
         shopping_list = {
-            1: (biVR, 1, 'VR', runs),
-            2: (biVR, 2, ['VR','PC'], runs),
-            3: (biVR, 4, 'VR', runs),
-            4: (biVR, 5, 'PC', runs), #
-            5: (biVR, 6, ['VR','PC'], runs), # PC
-            6: (biVR, 8, 'PC', runs),
-            7: (biVR, 9, ['VR','PC'], runs), #VR
-            8: (biVR, 10, ['VR','PC'], runs),
-            9: (biVR, 11, 'VR', runs), #
-            10: (biVR, 12, 'PC', runs),  #
-            11: (biVR, 13, 'VR', runs), #
-            12: (biVR, 14, 'VR', runs),
-            13: (biVR, 15, ['VR','PC'], runs), #
-            14: (biVR, 18, 'VR', runs),
-            15: (biVR, 20, 'PC', runs),
+            1: (biVR, 4, None, None),
+            2: (biVR, 10, None, None),
+            3: (biVR, 13, "VR", None),
+            4: (biVR, 15, "VR", None),
         }
         GoShoppingDataset.__init__(
             self,
