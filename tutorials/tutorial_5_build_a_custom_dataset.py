@@ -39,10 +39,10 @@ class CustomDataset1(GoShoppingDataset):
     def __init__(self):
         biVR = VirtualReality(virtual_reality=True, screen_display=True)
         runs =  blocks_reps([1,3], [1,2,3,4,5])
-        shopping_list = {
-            1: (biVR, 1, 'VR', runs),
-            2: (biVR, 2, 'VR', runs),
-        }
+        shopping_list = [
+            (biVR, 1, 'VR', runs),
+            (biVR, 2, 'VR', runs),
+        ]
         GoShoppingDataset.__init__(
             self,
             shopping_list=shopping_list,
@@ -55,10 +55,10 @@ class CustomDataset1(GoShoppingDataset):
 class CustomDataset2(GoShoppingDataset):
     def __init__(self):
         bi2014 = bi2014a()
-        shopping_list = {
-            1: (bi2014, 4, None, None),
-            2: (bi2014, 7, None, None),
-        }
+        shopping_list = [
+            (bi2014, 4, None, None),
+            (bi2014, 7, None, None),
+        ]
         GoShoppingDataset.__init__(
             self,
             shopping_list=shopping_list,
@@ -81,7 +81,7 @@ class CustomDataset3(GoShoppingDataset):
         )
 
 paradigm = P300()
-datasets = [bi2014a_il()]
+datasets = [CustomDataset3()]
 
 evaluation = WithinSessionEvaluation(
     paradigm=paradigm, datasets=datasets, overwrite=False, suffix="newdataset"

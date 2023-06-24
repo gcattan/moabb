@@ -13,19 +13,19 @@ from ..base import BaseDataset
 class GoShoppingDataset(BaseDataset):
     """TODO
     selection:
-        {
-            subject1: (dataset1, subject, session, runs)
-            subject2:
-        }
+        [
+            (dataset1, subject, session, runs)
+            (dataset2, subject, session, runs)
+        ]
     """
 
     @property
     def count(self):
-        return len(self.shopping_list.keys())
+        return len(self.shopping_list)
 
     def _get_sessions_per_subject(self):
         n_sessions = -1
-        for value in self.shopping_list.values():
+        for value in self.shopping_list:
             sessions = value[2]
             size = len(sessions) if isinstance(sessions, list) else 1
             if n_sessions == -1:
@@ -34,18 +34,15 @@ class GoShoppingDataset(BaseDataset):
                 n_sessions = min(n_sessions, size)
         return n_sessions
 
-    def _set_shopping_list(self, shopping_list: Union[dict,list]):
-        if isinstance(shopping_list, dict):
+    def _set_shopping_list(self, shopping_list: list):
+        if isinstance(shopping_list[0], tuple):
             self.shopping_list = shopping_list
         else:
-            self.shopping_list = {}
-            subject_idx = 1
+            self.shopping_list = []
             for shoppingDataset in shopping_list:
-                for value in shoppingDataset.shopping_list.values():
-                    self.shopping_list[subject_idx] = value
-                    subject_idx += 1
+                self.shopping_list.extend(shoppingDataset.shopping_list)
 
-    def __init__(self, shopping_list: Union[dict, list], events: dict, code: str, interval: list, paradigm: str):
+    def __init__(self, shopping_list: list, events: dict, code: str, interval: list, paradigm: str):
         self._set_shopping_list(shopping_list)
         super().__init__(
             subjects=list(range(1, self.count + 1)),
@@ -58,7 +55,7 @@ class GoShoppingDataset(BaseDataset):
 
     def _get_single_subject_data(self, shopped_subject):
         """return data for a single subject"""
-        dataset, subject, sessions, runs = self.shopping_list[shopped_subject]
+        dataset, subject, sessions, runs = self.shopping_list[shopped_subject - 1]
         subject_data = dataset._get_single_subject_data(subject)
         if sessions is None:
             return subject_data
@@ -83,7 +80,6 @@ class GoShoppingDataset(BaseDataset):
     def data_path(
         self, shopped_subject, path=None, force_update=False, update_path=None, verbose=None
     ):
-        dataset, subject, _, _ = self.shopping_list[shopped_subject]
+        dataset, subject, _, _ = self.shopping_list[shopped_subject - 1]
         path = dataset.data_path(subject)
-        print("--------------------", path)
         return path
