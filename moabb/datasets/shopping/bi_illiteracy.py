@@ -1,7 +1,7 @@
 from ..braininvaders import bi2014a, VirtualReality, bi2014b, bi2015a, bi2015b
 from .go_shopping import GoShoppingDataset
 
-class base_il(GoShoppingDataset):
+class base_bi_il(GoShoppingDataset):
     def __init__(self, shopping_list, dataset):
         GoShoppingDataset.__init__(
             self,
@@ -12,7 +12,7 @@ class base_il(GoShoppingDataset):
             paradigm="p300"
         )
 
-class bi2014a_il(base_il):
+class bi2014a_il(base_bi_il):
     def __init__(self):
         dataset = bi2014a()
         shopping_list = [
@@ -34,52 +34,48 @@ class bi2014a_il(base_il):
             (dataset, 55, None, None),
             (dataset, 61, None, None)
         ]
-        base_il.__init__(
+        base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class bi2014b_il(base_il):
+class bi2014b_il(base_bi_il):
     def __init__(self):
         dataset = bi2014b()
         shopping_list = [
-            # TODO
+            (dataset, 2, None, None),
+            (dataset, 7, None, None),
+            (dataset, 10, None, None),
+            (dataset, 13, None, None),
+            (dataset, 14, None, None),
+            (dataset, 17, None, None),
+            (dataset, 23, None, None),
+            (dataset, 26, None, None),
+            (dataset, 33, None, None),
+            (dataset, 35, None, None),
+            (dataset, 36, None, None),
         ]
-#         ['pair 03, subject 1 (cola)',
-#  'pair 03, subject 2 (cola)',
-#  'pair 04, subject 1 (cola)',
-#  'pair 04, subject 2 (cola)',
-#  'pair 09, subject 1 (cola)',
-#  'pair 09, subject 2 (cola)',
-#  'pair 10, subject 1 (solo)',
-#  'pair 10, subject 1 (cola)',
-#  'pair 10, subject 2 (solo)',
-#  'pair 10, subject 2 (cola)',
-#  'pair 13, subject 2 (cola)',
-#  'pair 14, subject 1 (cola)',
-#  'pair 14, subject 2 (cola)',
-#  'pair 18, subject 1 (cola)']
-        base_il.__init__(
+        base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class bi2015a_il(base_il):
+class bi2015a_il(base_bi_il):
     def __init__(self):
         dataset = bi2015a()
         shopping_list = [
             (dataset, 1, ['session_1', 'session_2', 'session_3'], None),
             (dataset, 39, ['session_2', 'session_3'], None)
         ]
-        base_il.__init__(
+        base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class bi2015b_il(base_il):
+class bi2015b_il(base_bi_il):
     def __init__(self):
         dataset = bi2015b()
         shopping_list = [
@@ -157,13 +153,13 @@ class bi2015b_il(base_il):
 #  'pair 19, session 2, subject 2',
 #  'pair 19, session 3, subject 2',
 #  'pair 19, session 4, subject 2']
-        base_il.__init__(
+        base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class VirtualReality_il(base_il):
+class VirtualReality_il(base_bi_il):
     def __init__(self):
         dataset = VirtualReality(virtual_reality=True, screen_display=True)
         shopping_list = {
@@ -172,7 +168,7 @@ class VirtualReality_il(base_il):
             (dataset, 13, "VR", None),
             (dataset, 15, "VR", None),
         }
-        base_il.__init__(
+        base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
