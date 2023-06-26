@@ -2,12 +2,13 @@ from ..braininvaders import bi2014a, VirtualReality, bi2014b, bi2015a, bi2015b
 from .go_shopping import GoShoppingDataset
 
 class base_bi_il(GoShoppingDataset):
-    def __init__(self, shopping_list, dataset):
+    def __init__(self, shopping_list, dataset=None):
+        code = "Illiteracy" if dataset is None else f"{dataset.code}+IL"
         GoShoppingDataset.__init__(
             self,
             shopping_list=shopping_list,
             events=dict(Target=2, NonTarget=1),
-            code=f"{dataset.code}+IL",
+            code=code,
             interval=[0, 1.0],
             paradigm="p300"
         )
@@ -114,14 +115,28 @@ class bi2015b_il(base_bi_il):
 class VirtualReality_il(base_bi_il):
     def __init__(self):
         dataset = VirtualReality(virtual_reality=True, screen_display=True)
-        shopping_list = {
+        shopping_list = [
             (dataset, 4, None, None),
             (dataset, 10, None, None),
             (dataset, 13, "VR", None),
             (dataset, 15, "VR", None),
-        }
+        ]
         base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
+        )
+
+class biIlliteracy(base_bi_il):
+    def __init__(self):
+        shopping_list = [
+            bi2014a_il(),
+            bi2014b_il(),
+            bi2015a_il(),
+            bi2015b_il(),
+            VirtualReality_il()
+        ]
+        base_bi_il.__init__(
+            self,
+            shopping_list=shopping_list
         )
