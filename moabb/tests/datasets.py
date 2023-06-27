@@ -189,7 +189,7 @@ class Test_GoShoppingDataset(unittest.TestCase):
 
             # Add the two datasets to a goshoppingdataset
             shopping_list = [
-                    (self.ds, 1, None, None)
+                    (self.ds, 1, None, None),
                     (self.ds2, 1, None, None)
                 ]
             shopping_dataset = GoShoppingDataset(shopping_list,
