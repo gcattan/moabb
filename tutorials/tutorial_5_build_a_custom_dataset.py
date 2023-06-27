@@ -8,9 +8,9 @@ Tutorial 5: Creating a dataset class
 # https://github.com/plcrodrigues/Workshop-MOABB-BCI-Graz-2019
 
 from moabb.datasets import VirtualReality
-from moabb.datasets.braininvaders import bi2014a
+from moabb.datasets.braininvaders import bi2014a, bi2014b, bi2015b
 from moabb.datasets.shopping import GoShoppingDataset
-from moabb.datasets.shopping.bi_illiteracy import bi2014a_il, VirtualReality_il
+from moabb.datasets.shopping.bi_illiteracy import bi2014a_il, VirtualReality_il, bi2014b_il, bi2015a_il, bi2015b_il, biIlliteracy
 from moabb.datasets.utils import blocks_reps
 from moabb.paradigms.p300 import P300
 from pyriemann.classification import MDM
@@ -81,6 +81,7 @@ class CustomDataset3(GoShoppingDataset):
         )
 
 paradigm = P300()
+
 datasets = [CustomDataset3()]
 
 evaluation = WithinSessionEvaluation(
