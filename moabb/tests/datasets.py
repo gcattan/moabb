@@ -125,7 +125,7 @@ class Test_GoShoppingDataset(unittest.TestCase):
         for sessions, runs in param_list:
             with self.subTest():
                 shopping_list = [
-                    (self.ds, sessions, runs)
+                    (self.ds, 1, sessions, runs)
                 ]
                 shopping_data = GoShoppingDataset(shopping_list,
                                                 events=dict(Target=2, NonTarget=1),
@@ -152,9 +152,9 @@ class Test_GoShoppingDataset(unittest.TestCase):
     def test_shopping_dataset_composition(self):
             # Test we can compound two instance of GoShoppingDataset into a new one.
 
-            # Create an instance of GoShoppingDataset
+            # Create an instance of GoShoppingDataset with one subject
             shopping_list = [
-                    (self.ds, None, None)
+                    (self.ds, 1, None, None)
                 ]
             shopping_dataset = GoShoppingDataset(shopping_list,
                                                 events=dict(Target=2, NonTarget=1),
@@ -175,7 +175,7 @@ class Test_GoShoppingDataset(unittest.TestCase):
             
             # Assert that the coumpouned dataset has two times more subject than the original one.
             data = shopping_data.get_data()
-            self.assertEqual(len(data), self.n_subjects * 2)
+            self.assertEqual(len(data), 2)
 
     def test_get_sessions_per_subject(self):
             # define a new fake dataset with two times more sessions:
