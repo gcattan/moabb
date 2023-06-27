@@ -102,11 +102,11 @@ class Test_GoShoppingDataset(unittest.TestCase):
 
     def __init__(self, *args, **kwargs):
         self.paradigm = "p300"
-        self.n_session = 2
+        self.n_sessions = 2
         self.n_subjects = 2
         self.n_runs = 2
         self.ds = FakeDataset(
-                n_sessions=self.n_session,
+                n_sessions=self.n_sessions,
                 n_runs=self.n_runs,
                 n_subjects=self.n_subjects,
                 event_list=["Target", "NonTarget"],
@@ -141,7 +141,7 @@ class Test_GoShoppingDataset(unittest.TestCase):
 
                 # Check data size
                 self.assertEqual(len(data), 1)
-                expected_session_number = self.n_session if sessions is None else 1
+                expected_session_number = self.n_sessions if sessions is None else 1
                 self.assertEqual(len(data[1]), expected_session_number)
                 expected_runs_number = self.n_runs if runs is None else 1
                 self.assertEqual(len(data[1]["session_0"]), expected_runs_number)
@@ -180,7 +180,7 @@ class Test_GoShoppingDataset(unittest.TestCase):
     def test_get_sessions_per_subject(self):
             # define a new fake dataset with two times more sessions:
             self.ds2 = FakeDataset(
-                n_sessions=self.n_session * 2,
+                n_sessions=self.n_sessions * 2,
                 n_runs=self.n_runs,
                 n_subjects=self.n_subjects,
                 event_list=["Target", "NonTarget"],
