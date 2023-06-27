@@ -140,7 +140,7 @@ class Test_GoShoppingDataset(unittest.TestCase):
                 self.assertEqual(type(data[1]["session_0"]["run_0"]), mne.io.RawArray)
 
                 # Check data size
-                self.assertEqual(len(data), self.n_subjects)
+                self.assertEqual(len(data), 1)
                 expected_session_number = self.n_sessions if sessions is None else 1
                 self.assertEqual(len(data[1]), expected_session_number)
                 expected_runs_number = self.n_sessions if runs is None else 1
