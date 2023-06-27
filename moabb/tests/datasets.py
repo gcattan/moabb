@@ -141,10 +141,10 @@ class Test_GoShoppingDataset(unittest.TestCase):
 
                 # Check data size
                 self.assertEqual(len(data), 1)
-                expected_session_number = self.n_sessions if sessions is None else 1
+                expected_session_number = self.n_session if sessions is None else 1
                 self.assertEqual(len(data[1]), expected_session_number)
-                expected_runs_number = self.n_sessions if runs is None else 1
-                self.assertEqual(len(data[1]["session_0"]), self.n_runs)
+                expected_runs_number = self.n_runs if runs is None else 1
+                self.assertEqual(len(data[1]["session_0"]), expected_runs_number)
 
                 # bad subject id must raise error
                 self.assertRaises(ValueError, shopping_data.get_data, [1000])
@@ -189,8 +189,8 @@ class Test_GoShoppingDataset(unittest.TestCase):
 
             # Add the two datasets to a goshoppingdataset
             shopping_list = [
-                    (self.ds, None, None)
-                    (self.ds2, None, None)
+                    (self.ds, 1, None, None)
+                    (self.ds2, 1, None, None)
                 ]
             shopping_dataset = GoShoppingDataset(shopping_list,
                                                 events=dict(Target=2, NonTarget=1),
