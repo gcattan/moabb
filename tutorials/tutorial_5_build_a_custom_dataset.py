@@ -3,37 +3,51 @@
 Tutorial 5: Creating a dataset class
 ====================================
 """
-# Authors: Pedro L. C. Rodrigues, Sylvain Chevallier
+# Author: Gregoire Cattan
 #
 # https://github.com/plcrodrigues/Workshop-MOABB-BCI-Graz-2019
 
 from moabb.datasets import VirtualReality
-from moabb.datasets.braininvaders import bi2014a, bi2014b, bi2015b
+from moabb.datasets.braininvaders import bi2014a
 from moabb.datasets.shopping import GoShoppingDataset
-from moabb.datasets.shopping.bi_illiteracy import bi2014a_il, VirtualReality_il, bi2014b_il, bi2015a_il, bi2015b_il, biIlliteracy
 from moabb.datasets.utils import blocks_reps
 from moabb.paradigms.p300 import P300
 from pyriemann.classification import MDM
-from pyriemann.estimation import Covariances, ERPCovariances, XdawnCovariances
+from pyriemann.estimation import ERPCovariances
 from sklearn.pipeline import make_pipeline
-
-from moabb.datasets import download as dl
-from moabb.datasets.base import BaseDataset
 from moabb.evaluations import WithinSessionEvaluation
-from moabb.paradigms import LeftRightImagery
 
 
 ##############################################################################
-# Creating some Data
+# Initialization
 # ------------------
 #
-# To illustrate the creation of a dataset class in MOABB, we first create an
-# example dataset saved in .mat file. It contains a single fake recording on
-# 8 channels lasting for 150 seconds (sampling frequency 256 Hz). We have
-# included the script that creates this dataset and have uploaded it online.
-# The fake dataset is available on the
-# `Zenodo website <https://sandbox.zenodo.org/record/369543>`_
+# This tutorial illustrates how to use the GoShoppingDataset to:
+# 1) Select a few subjects/sessions/runs in an existing dataset
+# 2) Merge two GoShoppingDataset into a new one
+# 3) ... and finally use this new dataset on a pipeline
+# (this steps is not specific to GoShoppingDataset)
+#
+# Let's define a paradigm and a pipeline for evaluation first.
 
+paradigm = P300()
+pipelines = {}
+pipelines["MDM"] = make_pipeline(ERPCovariances(estimator="lwf"), MDM(metric="riemann"))
+
+##############################################################################
+# Creation a selection of subject
+# ------------------
+#
+# We are going to great two GoShoppingDataset, namely CustomDataset1 &  2.
+# A GoShoppingDataset accepts a shopping_list of subjects. 
+# It is a list of tuple. A tuple contains 4 values:
+# - the original dataset
+# - the subject number to select
+# - the sessions. It can be:
+#   - a session name ('session_0')
+#   - a list of sessions (['session_0', 'session_1'])
+#   - `None` to select all the sessions attributed to a subjet
+# - the runs. As for sessions, it can be a single run name, a list or `None`` (to select all runs).
 
 class CustomDataset1(GoShoppingDataset):
     def __init__(self):
@@ -68,6 +82,15 @@ class CustomDataset2(GoShoppingDataset):
             paradigm="p300"
         )
 
+##############################################################################
+# Merging the datasets
+# ------------------
+#
+# We are now going to merge the two GoShoppingDataset into a single one.
+# The implementation is straigh forward. Instead of providing a list of subjects, 
+# you should provide a list of GoShoppingDataset.
+# shopping_list = [CustomDataset1(), CustomDataset2()]
+
 class CustomDataset3(GoShoppingDataset):
     def __init__(self):
         shopping_list = [CustomDataset1(), CustomDataset2()]
@@ -80,15 +103,19 @@ class CustomDataset3(GoShoppingDataset):
             paradigm="p300"
         )
 
-paradigm = P300()
+
+##############################################################################
+# Evaluate and display
+# ------------------
+#
+# Let's use a WithinSessionEvaluation to evaluate our new dataset.
+# If you already new how to do this, nothing changed:
+# The GoShoppingDataset can be used as a `normal` dataset.
 
 datasets = [CustomDataset3()]
-
 evaluation = WithinSessionEvaluation(
     paradigm=paradigm, datasets=datasets, overwrite=False, suffix="newdataset"
 )
-pipelines = {}
-pipelines["MDM"] = make_pipeline(ERPCovariances(estimator="lwf"), MDM(metric="riemann"))
 scores = evaluation.process(pipelines)
 
 print(scores)

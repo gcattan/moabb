@@ -1,7 +1,7 @@
 from ..braininvaders import bi2014a, VirtualReality, bi2014b, bi2015a, bi2015b
 from .go_shopping import GoShoppingDataset
 
-class base_bi_il(GoShoppingDataset):
+class _base_bi_il(GoShoppingDataset):
     def __init__(self, shopping_list, dataset=None):
         code = "Illiteracy" if dataset is None else f"{dataset.code}+IL"
         GoShoppingDataset.__init__(
@@ -13,7 +13,10 @@ class base_bi_il(GoShoppingDataset):
             paradigm="p300"
         )
 
-class bi2014a_il(base_bi_il):
+class bi2014a_il(_base_bi_il):
+    """A selection of subject from bi2014a with AUC < 0.7 with pipeline:
+    ERPCovariances(estimator="lwf"), MDM(metric="riemann")
+    """
     def __init__(self):
         dataset = bi2014a()
         shopping_list = [
@@ -35,13 +38,16 @@ class bi2014a_il(base_bi_il):
             (dataset, 55, None, None),
             (dataset, 61, None, None)
         ]
-        base_bi_il.__init__(
+        _base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class bi2014b_il(base_bi_il):
+class bi2014b_il(_base_bi_il):
+    """A selection of subject from bi2014b with AUC < 0.7 with pipeline:
+    ERPCovariances(estimator="lwf"), MDM(metric="riemann")
+    """
     def __init__(self):
         dataset = bi2014b()
         shopping_list = [
@@ -57,26 +63,32 @@ class bi2014b_il(base_bi_il):
             (dataset, 35, None, None),
             (dataset, 36, None, None),
         ]
-        base_bi_il.__init__(
+        _base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class bi2015a_il(base_bi_il):
+class bi2015a_il(_base_bi_il):
+    """A selection of subject from bi2015a with AUC < 0.7 with pipeline:
+    ERPCovariances(estimator="lwf"), MDM(metric="riemann")
+    """
     def __init__(self):
         dataset = bi2015a()
         shopping_list = [
             (dataset, 1, ['session_1', 'session_2', 'session_3'], None),
             (dataset, 39, ['session_2', 'session_3'], None)
         ]
-        base_bi_il.__init__(
+        _base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class bi2015b_il(base_bi_il):
+class bi2015b_il(_base_bi_il):
+    """A selection of subject from bi2015b with AUC < 0.7 with pipeline:
+    ERPCovariances(estimator="lwf"), MDM(metric="riemann")
+    """
     def __init__(self):
         dataset = bi2015b()
         shopping_list = [
@@ -106,13 +118,16 @@ class bi2015b_il(base_bi_il):
              (dataset, 42, None, None),
              (dataset, 44, None, None)
         ]
-        base_bi_il.__init__(
+        _base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class VirtualReality_il(base_bi_il):
+class VirtualReality_il(_base_bi_il):
+    """A selection of subject from VirtualReality with AUC < 0.7 with pipeline:
+    ERPCovariances(estimator="lwf"), MDM(metric="riemann")
+    """
     def __init__(self):
         dataset = VirtualReality(virtual_reality=True, screen_display=True)
         shopping_list = [
@@ -121,13 +136,16 @@ class VirtualReality_il(base_bi_il):
             (dataset, 13, "VR", None),
             (dataset, 15, "VR", None),
         ]
-        base_bi_il.__init__(
+        _base_bi_il.__init__(
             self,
             shopping_list=shopping_list,
             dataset=dataset
         )
 
-class biIlliteracy(base_bi_il):
+class biIlliteracy(_base_bi_il):
+    """Subjects from braininvaders datasets with AUC < 0.7 with pipeline:
+    ERPCovariances(estimator="lwf"), MDM(metric="riemann")
+    """
     def __init__(self):
         shopping_list = [
             bi2014a_il(),
@@ -136,7 +154,7 @@ class biIlliteracy(base_bi_il):
             bi2015b_il(),
             VirtualReality_il()
         ]
-        base_bi_il.__init__(
+        _base_bi_il.__init__(
             self,
             shopping_list=shopping_list
         )

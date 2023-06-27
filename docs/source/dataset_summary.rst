@@ -92,6 +92,25 @@ is a resting state experiment.
    HeadMountedDisplay,12,16,2,10,60s,512Hz,1
 
 
+Go-Shopping Datasets
+======================
+
+Go-Shopping Datasets are datasets compounded with subjects from other datasets.
+It is useful for merging different datasets (including other Go-Shopping datasets),
+select a sample of subject inside a dataset (e.g. subject with high/low performance).
+
+.. csv-table::
+   :header: Dataset, #Subj, #Original datasets
+   :class: sortable
+
+   bi2014a_il,17,bi2014a
+   bi2014b_il,11,bi2014b
+   bi2015a_il,2,bi2015a
+   bi2015b_il,25,bi2015b
+   VirtualReality_il,4,VirtualReality
+   biIlliteracy,59,bi2014a_il bi2014b_il bi2015a_il bi2015b_il VirtualReality_il
+
+
 Submit a new dataset
 ~~~~~~~~~~~~~~~~~~~~
 
