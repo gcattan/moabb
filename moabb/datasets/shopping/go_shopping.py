@@ -2,22 +2,57 @@
 Build a custom dataset using subjects from other datasets.
 """
 
-from ast import Or
-from typing import Union
-from moabb.datasets.braininvaders import VirtualReality
-
-from .. import download as dl
 from ..base import BaseDataset
 
 
 class GoShoppingDataset(BaseDataset):
-    """TODO
-    selection:
+    """With this dataset, you can "go shopping"
+    and select among the subjects in all the datasets
+    to build a custom dataset.
+
+
+    Parameters
+    ----------
+    shopping_list: List[Union[tuple, GoShoppingDataset]]
+        A list of subject or GoShoppingDataset (exclusive).
+        Example, with a list of selected subject:
         [
-            (dataset1, subject, session, runs)
-            (dataset2, subject, session, runs)
+            (bi2013(), 1, "session_0", "run_0")
+            (bi2014(), 1, "session_0", None)
         ]
+        Example of building a dataset compounded of GoShoppingDatasets:
+        [
+            GoShoppingDataset(shopping_list1),
+            GoShoppingDataset(shopping_list2)
+        ]
+
+    sessions_per_subject: int
+        Number of sessions per subject (if varying, take minimum)
+
+    events: dict of strings
+        String codes for events matched with labels in the stim channel.
+        See `BaseDataset`.
+
+    code: string
+        Unique identifier for dataset, used in all plots
+
+    interval: list with 2 entries
+        See `BaseDataset`.
+
+    paradigm: ['p300','imagery', 'ssvep', 'rstate']
+        Defines what sort of dataset this is
     """
+
+    def __init__(self, shopping_list: list, events: dict, code: str, interval: list, paradigm: str):
+        self._set_shopping_list(shopping_list)
+        super().__init__(
+            subjects=list(range(1, self.count + 1)),
+            sessions_per_subject=self._get_sessions_per_subject(),
+            events=events,
+            code=code,
+            interval=interval,
+            paradigm=paradigm,
+        )
 
     @property
     def count(self):
@@ -44,17 +79,6 @@ class GoShoppingDataset(BaseDataset):
             self.shopping_list = []
             for shoppingDataset in shopping_list:
                 self.shopping_list.extend(shoppingDataset.shopping_list)
-
-    def __init__(self, shopping_list: list, events: dict, code: str, interval: list, paradigm: str):
-        self._set_shopping_list(shopping_list)
-        super().__init__(
-            subjects=list(range(1, self.count + 1)),
-            sessions_per_subject=self._get_sessions_per_subject(),
-            events=events,
-            code=code,
-            interval=interval,
-            paradigm=paradigm,
-        )
 
     def _get_single_subject_data(self, shopped_subject):
         """return data for a single subject"""
