@@ -28,6 +28,9 @@ class GoShoppingDataset(BaseDataset):
         for value in self.shopping_list:
             sessions = value[2]
             size = len(sessions) if isinstance(sessions, list) else 1
+            if sessions is None:
+                dataset = value[0]
+                size = dataset.n_sessions
             if n_sessions == -1:
                 n_sessions = size
             else:
