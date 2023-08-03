@@ -18,6 +18,20 @@ from sklearn.pipeline import make_pipeline
 
 from matplotlib import pyplot as plt
 
+##############################################################################
+# Instanciate the model
+# ----------------
+#
+# Instanciate an instance of EEGConformer [1]_.
+#
+# [1] \
+# 
+# Y. Song, Q. Zheng, B. Liu, and X. Gao,
+# ‘EEG Conformer: Convolutional Transformer for EEG Decoding and Visualization’,
+# IEEE Transactions on Neural Systems and Rehabilitation Engineering,
+# vol. 31, pp. 710–719, 2023, doi: 10.1109/TNSRE.2022.3230250.
+
+
 # Set up GPU if it is there
 cuda = torch.cuda.is_available()
 device = "cuda" if cuda else "cpu"
@@ -62,10 +76,7 @@ clf = EEGClassifier(
     verbose=VERBOSE,  # Not printing the results for each epoch
 )
 
-# Create the pipelines
-paradigm = P300()
 
-datasets = [BNCI2014001()]
 ##############################################################################
 # Create Pipelines
 # ----------------
@@ -94,6 +105,10 @@ pipelines["MDM"] = make_pipeline(
 # ----------------
 #
 # Compare the pipeline using a within session evaluation.
+# Create the pipelines
+paradigm = P300()
+
+datasets = [BNCI2014001()]
 
 evaluation = CrossSubjectEvaluation(
     paradigm=paradigm,
