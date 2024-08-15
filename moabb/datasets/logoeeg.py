@@ -21,7 +21,7 @@ class LogoEEG(BaseDataset):
     """
 
     def __init__(self):
-        subject_list = [1, 2, 3]
+        subject_list = list(range(1, 6 + 1))
         super().__init__(
             subjects=subject_list,
             sessions_per_subject=1,
