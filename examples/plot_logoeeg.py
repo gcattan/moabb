@@ -42,28 +42,29 @@ datasets = [LogoEEG()]
 
 
 
-# pipelines = {}
+pipelines = {}
 
 
-# pipelines["Cov+TS+LDA"] = make_pipeline(
-#     Covariances(estimator="lwf"), MDM()
-# )
+pipelines["Cov+TS+LDA"] = make_pipeline(
+    Covariances(estimator="lwf"), MDM()
+)
 
-# X, y, meta = paradigm.get_data(datasets[0], subjects=[1, 2, 3, 4, 5, 6])
+X, y, meta = paradigm.get_data(datasets[0], subjects=[1, 2, 3, 4, 5, 6])
 
-# cv = StratifiedKFold(n_splits=2)
-# scores = cross_val_score(pipelines["Cov+TS+LDA"], X, y, cv=cv, scoring="balanced_accuracy")
-# print(scores)
+cv = StratifiedKFold(n_splits=2)
+scores = cross_val_score(pipelines["Cov+TS+LDA"], X, y, cv=cv, scoring="balanced_accuracy")
+print(scores)
 
+exit()
 # plot viz
 
-X, y, meta = paradigm.get_data(datasets[0], subjects=[1, 2, 3, 4, 5, 6], return_epochs=False, return_raws=False)
-X_raws, y, meta = paradigm.get_data(datasets[0], subjects=[1, 2, 3, 4, 5, 6], return_epochs=False, return_raws=True)
-X_epochs, y, meta = paradigm.get_data(datasets[0], subjects=[1, 2, 3, 4, 5, 6], return_epochs=True, return_raws=False)
+X, y, meta = paradigm.get_data(datasets[0], subjects=[8], return_epochs=False, return_raws=False)
+X_raws, y, meta = paradigm.get_data(datasets[0], subjects=[8], return_epochs=False, return_raws=True)
+X_epochs, y, meta = paradigm.get_data(datasets[0], subjects=[8], return_epochs=True, return_raws=False)
 # layout = read_layout("EEG1005")
 # plot_topo_image_epochs(X_epochs, layout=layout, layout_scale=1) # bof
 
-# X_raws[0].compute_psd().plot() # Good
+X_raws[0].compute_psd().plot() # Good
 
 # plot_topomap(X[0][:, 0], pos=X_raws[0].info, ch_type='eeg') # Good
 

@@ -21,13 +21,13 @@ class LogoEEG(BaseDataset):
     """
 
     def __init__(self):
-        subject_list = list(range(1, 6 + 1))
+        subject_list = list(range(1, 8 + 1))
         super().__init__(
             subjects=subject_list,
             sessions_per_subject=1,
             events=EVENTS_LOGOEEG,
             code="LogoEEG",
-            interval=[0, 10],
+            interval=[10, 120 + 10],
             paradigm="rstate",
             doi="https://doi.org/10.5281/zenodo.2348892",
         )
