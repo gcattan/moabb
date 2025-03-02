@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../_static/moabb_logo.png" type="image/png">
-    <title>Changing epoch size in P300 VR dataset &#8212; moabb 1.1.0-dev documentation</title>
+    <title>Changing epoch size in P300 VR dataset &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -424,7 +424,7 @@ document.write(`
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="changing_download_directory.html">Change Download Directory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_codecarbon.html">Benchmarking with MOABB showing the CO2 footprint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="load_model.html">Load Model (Scikit, Pytorch, Keras) with MOABB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="load_model.html">Load Model (Scikit, Keras) with MOABB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="noplot_bids_conversion.html">Convert a MOABB dataset to BIDS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="noplot_phmd_ml_spectrum.html">Spectral analysis of the trials</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Changing epoch size in P300 VR dataset</a></li>
@@ -432,9 +432,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="plot_benchmark.html">Examples of how to use MOABB to benchmark pipelines.</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="plot_benchmark_DL.html">Benchmarking on MOABB with Tensorflow deep net architectures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_benchmark_braindecode.html">Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_benchmark_grid_search.html">Benchmarking with MOABB with Grid Search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_braindecode.html">Cross-session motor imagery with deep learning EEGNet v4 model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_cross_session_motor_imagery.html">Cross-Session Motor Imagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_cross_session_multiple_datasets.html">Cross-Session on Multiple Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_cross_subject_ssvep.html">Cross-Subject SSVEP</a></li>
@@ -521,6 +519,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.WithinSessionEvaluation.html">moabb.evaluations.WithinSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.CrossSessionEvaluation.html">moabb.evaluations.CrossSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.CrossSubjectEvaluation.html">moabb.evaluations.CrossSubjectEvaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.WithinSessionSplitter.html">moabb.evaluations.WithinSessionSplitter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.base.BaseEvaluation.html">moabb.evaluations.base.BaseEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.paradigms.MotorImagery.html">moabb.paradigms.MotorImagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.paradigms.LeftRightImagery.html">moabb.paradigms.LeftRightImagery</a></li>
@@ -563,8 +562,6 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_deep_model.EEGNet.html">moabb.pipelines.utils_deep_model.EEGNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_deep_model.EEGNet_TC.html">moabb.pipelines.utils_deep_model.EEGNet_TC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_deep_model.TCN_block.html">moabb.pipelines.utils_deep_model.TCN_block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader.html">moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_pytorch.InputShapeSetterEEG.html">moabb.pipelines.utils_pytorch.InputShapeSetterEEG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.analysis.plotting.score_plot.html">moabb.analysis.plotting.score_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.analysis.plotting.paired_plot.html">moabb.analysis.plotting.paired_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.analysis.plotting.summary_plot.html">moabb.analysis.plotting.summary_plot</a></li>
@@ -658,20 +655,20 @@ to specify the experimental blocks and repetitions for analysis.</p>
 <span class="c1"># Modified by: Gregoire Cattan &lt;gcattan@hotmail.fr&gt;</span>
 <span class="c1"># License: BSD (3-clause)</span>
 
-<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span> <span class="nn">pyriemann.classification</span> <span class="kn">import</span> <span class="n">MDM</span>
-<span class="kn">from</span> <span class="nn">pyriemann.estimation</span> <span class="kn">import</span> <span class="n">ERPCovariances</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html#sklearn.metrics.roc_auc_score" title="sklearn.metrics.roc_auc_score" class="sphx-glr-backref-module-sklearn-metrics sphx-glr-backref-type-py-function"><span class="n">roc_auc_score</span></a>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="sklearn.model_selection.KFold" class="sphx-glr-backref-module-sklearn-model_selection sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">KFold</span></a>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html#sklearn.pipeline.make_pipeline" title="sklearn.pipeline.make_pipeline" class="sphx-glr-backref-module-sklearn-pipeline sphx-glr-backref-type-py-function"><span class="n">make_pipeline</span></a>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html#sklearn.preprocessing.LabelEncoder" title="sklearn.preprocessing.LabelEncoder" class="sphx-glr-backref-module-sklearn-preprocessing sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">LabelEncoder</span></a>
-<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.classification</span><span class="w"> </span><span class="kn">import</span> <span class="n">MDM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.estimation</span><span class="w"> </span><span class="kn">import</span> <span class="n">ERPCovariances</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html#sklearn.metrics.roc_auc_score" title="sklearn.metrics.roc_auc_score" class="sphx-glr-backref-module-sklearn-metrics sphx-glr-backref-type-py-function"><span class="n">roc_auc_score</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.KFold.html#sklearn.model_selection.KFold" title="sklearn.model_selection.KFold" class="sphx-glr-backref-module-sklearn-model_selection sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">KFold</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html#sklearn.pipeline.make_pipeline" title="sklearn.pipeline.make_pipeline" class="sphx-glr-backref-module-sklearn-pipeline sphx-glr-backref-type-py-function"><span class="n">make_pipeline</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.LabelEncoder.html#sklearn.preprocessing.LabelEncoder" title="sklearn.preprocessing.LabelEncoder" class="sphx-glr-backref-module-sklearn-preprocessing sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">LabelEncoder</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
 
-<span class="kn">from</span> <span class="nn">moabb.datasets</span> <span class="kn">import</span> <a href="../generated/moabb.datasets.Cattan2019_VR.html#moabb.datasets.Cattan2019_VR" title="moabb.datasets.Cattan2019_VR" class="sphx-glr-backref-module-moabb-datasets sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Cattan2019_VR</span></a>
-<span class="kn">from</span> <span class="nn">moabb.paradigms</span> <span class="kn">import</span> <a href="../generated/moabb.paradigms.P300.html#moabb.paradigms.P300" title="moabb.paradigms.P300" class="sphx-glr-backref-module-moabb-paradigms sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">P300</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.datasets</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/moabb.datasets.Cattan2019_VR.html#moabb.datasets.Cattan2019_VR" title="moabb.datasets.Cattan2019_VR" class="sphx-glr-backref-module-moabb-datasets sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Cattan2019_VR</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.paradigms</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/moabb.paradigms.P300.html#moabb.paradigms.P300" title="moabb.paradigms.P300" class="sphx-glr-backref-module-moabb-paradigms sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">P300</span></a>
 
 
 <a href="https://docs.python.org/3/library/warnings.html#warnings.filterwarnings" title="warnings.filterwarnings" class="sphx-glr-backref-module-warnings sphx-glr-backref-type-py-function"><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span></a><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
@@ -879,7 +876,7 @@ plot the mean AUC as a function of the epoch length.</p>
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

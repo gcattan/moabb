@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../_static/moabb_logo.png" type="image/png">
-    <title>moabb.evaluations.base.BaseEvaluation &#8212; moabb 1.1.0-dev documentation</title>
+    <title>moabb.evaluations.base.BaseEvaluation &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -65,7 +65,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="moabb.paradigms.MotorImagery" href="moabb.paradigms.MotorImagery.html" />
-    <link rel="prev" title="moabb.evaluations.CrossSubjectEvaluation" href="moabb.evaluations.CrossSubjectEvaluation.html" />
+    <link rel="prev" title="moabb.evaluations.WithinSessionSplitter" href="moabb.evaluations.WithinSessionSplitter.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -476,22 +476,22 @@ additional data preprocessing steps for more complicated algorithms.</p>
 <li><p><strong>paradigm</strong> (<em>Paradigm instance</em>) – The paradigm to use.</p></li>
 <li><p><strong>datasets</strong> (<em>List</em><em> of </em><em>Dataset instance</em>) – The list of dataset to run the evaluation. If none, the list of
 compatible dataset will be retrieved from the paradigm instance.</p></li>
-<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>RandomState instance</em><em>, </em><em>default=None</em>) – If not None, can guarantee same seed for shuffling examples.</p></li>
-<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>default=1</em>) – Number of jobs for fitting of pipeline.</p></li>
-<li><p><strong>overwrite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default=False</em>) – If true, overwrite the results.</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>RandomState instance</em><em>, </em><em>default=None</em>) – If not None, can guarantee same seed for shuffling examples.</p></li>
+<li><p><strong>n_jobs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=1</em>) – Number of jobs for fitting of pipeline.</p></li>
+<li><p><strong>overwrite</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=False</em>) – If true, overwrite the results.</p></li>
 <li><p><strong>error_score</strong> (<em>&quot;raise&quot;</em><em> or </em><em>numeric</em><em>, </em><em>default=&quot;raise&quot;</em>) – Value to assign to the score if an error occurs in estimator fitting. If set to
 ‘raise’, the error is raised.</p></li>
-<li><p><strong>suffix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Suffix for the results file.</p></li>
-<li><p><strong>hdf5_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Specific path for storing the results.</p></li>
+<li><p><strong>suffix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Suffix for the results file.</p></li>
+<li><p><strong>hdf5_path</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Specific path for storing the results.</p></li>
 <li><p><strong>additional_columns</strong> (<em>None</em>) – Adding information to results.</p></li>
-<li><p><strong>return_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default=False</em>) – use MNE epoch to train pipelines.</p></li>
-<li><p><strong>return_raws</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default=False</em>) – use MNE raw to train pipelines.</p></li>
-<li><p><strong>mne_labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default=False</em>) – if returning MNE epoch, use original dataset label if True</p></li>
-<li><p><strong>n_splits</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>default=None</em>) – Number of splits for cross-validation. If None, the number of splits
+<li><p><strong>return_epochs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=False</em>) – use MNE epoch to train pipelines.</p></li>
+<li><p><strong>return_raws</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=False</em>) – use MNE raw to train pipelines.</p></li>
+<li><p><strong>mne_labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=False</em>) – if returning MNE epoch, use original dataset label if True</p></li>
+<li><p><strong>n_splits</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=None</em>) – Number of splits for cross-validation. If None, the number of splits
 is equal to the number of subjects.</p></li>
-<li><p><strong>save_model</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default=False</em>) – Save model after training, for each fold of cross-validation if needed</p></li>
-<li><p><strong>cache_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default=None</em>) – Configuration for caching of datasets. See <a class="reference internal" href="moabb.datasets.base.CacheConfig.html#moabb.datasets.base.CacheConfig" title="moabb.datasets.base.CacheConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">moabb.datasets.base.CacheConfig</span></code></a> for details.</p></li>
-<li><p><strong>optuna</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a><em>, </em><em>default=False</em>) – If optuna is enable it will change the GridSearch to a RandomizedGridSearch with 15 minutes of cut off time.
+<li><p><strong>save_model</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=False</em>) – Save model after training, for each fold of cross-validation if needed</p></li>
+<li><p><strong>cache_config</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=None</em>) – Configuration for caching of datasets. See <a class="reference internal" href="moabb.datasets.base.CacheConfig.html#moabb.datasets.base.CacheConfig" title="moabb.datasets.base.CacheConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">moabb.datasets.base.CacheConfig</span></code></a> for details.</p></li>
+<li><p><strong>optuna</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=False</em>) – If optuna is enable it will change the GridSearch to a RandomizedGridSearch with 15 minutes of cut off time.
 This option is compatible with list of entries of type None, bool, int, float and string</p></li>
 <li><p><strong>time_out</strong> (<em>default=60*15</em>) – Cut off time for the optuna search expressed in seconds, the default value is 15 minutes.
 Only used with optuna equal to True.</p></li>
@@ -548,10 +548,10 @@ containing the results of the evaluation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pipelines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em> of </em><em>pipeline instance.</em>) – A dict containing the sklearn pipeline to evaluate.</p></li>
-<li><p><strong>param_grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The key of the dictionary must be the same as the associated pipeline.</p></li>
+<li><p><strong>pipelines</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em> of </em><em>pipeline instance.</em>) – A dict containing the sklearn pipeline to evaluate.</p></li>
+<li><p><strong>param_grid</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – The key of the dictionary must be the same as the associated pipeline.</p></li>
 <li><p><strong>postprocess_pipeline</strong> (<em>Pipeline</em><em> | </em><em>None</em>) – Optional pipeline to apply to the data after the preprocessing.
-This pipeline will either receive <a class="reference external" href="https://mne.tools/stable/generated/mne.io.BaseRaw.html#mne.io.BaseRaw" title="(in MNE v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mne.io.BaseRaw</span></code></a>, <a class="reference external" href="https://mne.tools/stable/generated/mne.Epochs.html#mne.Epochs" title="(in MNE v1.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mne.Epochs</span></code></a>
+This pipeline will either receive <a class="reference external" href="https://mne.tools/stable/generated/mne.io.BaseRaw.html#mne.io.BaseRaw" title="(in MNE v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mne.io.BaseRaw</span></code></a>, <a class="reference external" href="https://mne.tools/stable/generated/mne.Epochs.html#mne.Epochs" title="(in MNE v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">mne.Epochs</span></code></a>
 or <code class="xref py py-func docutils literal notranslate"><span class="pre">np.ndarray()</span></code> as input, depending on the values of <code class="docutils literal notranslate"><span class="pre">return_epochs</span></code>
 and <code class="docutils literal notranslate"><span class="pre">return_raws</span></code>.
 This pipeline must return an <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code>.
@@ -575,9 +575,6 @@ i.e. no call to <code class="docutils literal notranslate"><span class="pre">fit
 <div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use the Hinss2021 dataset with the resting state paradigm."><img alt="Hinss2021 classification example" src="../_images/sphx_glr_plot_Hinss2021_classification_thumb.png" />
 <p><a class="reference internal" href="../auto_examples/plot_Hinss2021_classification.html#sphx-glr-auto-examples-plot-hinss2021-classification-py"><span class="std std-ref">Hinss2021 classification example</span></a></p>
   <div class="sphx-glr-thumbnail-title">Hinss2021 classification example</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cross-session motor imagery with deep learning EEGNet v4 model"><img alt="Cross-session motor imagery with deep learning EEGNet v4 model" src="../_images/sphx_glr_plot_braindecode_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plot_braindecode.html#sphx-glr-auto-examples-plot-braindecode-py"><span class="std std-ref">Cross-session motor imagery with deep learning EEGNet v4 model</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Cross-session motor imagery with deep learning EEGNet v4 model</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="This example show how to perform a cross session motor imagery analysis on the very popular dat..."><img alt="Cross-Session Motor Imagery" src="../_images/sphx_glr_plot_cross_session_motor_imagery_thumb.png" />
 <p><a class="reference internal" href="../auto_examples/plot_cross_session_motor_imagery.html#sphx-glr-auto-examples-plot-cross-session-motor-imagery-py"><span class="std std-ref">Cross-Session Motor Imagery</span></a></p>
   <div class="sphx-glr-thumbnail-title">Cross-Session Motor Imagery</div>
@@ -644,12 +641,12 @@ i.e. no call to <code class="docutils literal notranslate"><span class="pre">fit
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="moabb.evaluations.CrossSubjectEvaluation.html"
+       href="moabb.evaluations.WithinSessionSplitter.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">moabb.evaluations.CrossSubjectEvaluation</p>
+        <p class="prev-next-title">moabb.evaluations.WithinSessionSplitter</p>
       </div>
     </a>
     <a class="right-next"
@@ -713,7 +710,7 @@ i.e. no call to <code class="docutils literal notranslate"><span class="pre">fit
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

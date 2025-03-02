@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../_static/moabb_logo.png" type="image/png">
-    <title>moabb.pipelines.utils_pytorch.InputShapeSetterEEG &#8212; moabb 1.1.0-dev documentation</title>
+    <title>moabb.evaluations.WithinSessionSplitter &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -59,13 +59,13 @@
                 gtag('js', new Date());
                 gtag('config', 'G-5WJBKDMSTE');
             </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/moabb.pipelines.utils_pytorch.InputShapeSetterEEG';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'generated/moabb.evaluations.WithinSessionSplitter';</script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-2.0.4/b-3.0.2/b-html5-3.0.2/datatables.min.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="moabb.analysis.plotting.score_plot" href="moabb.analysis.plotting.score_plot.html" />
-    <link rel="prev" title="moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader" href="moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader.html" />
+    <link rel="next" title="moabb.evaluations.base.BaseEvaluation" href="moabb.evaluations.base.BaseEvaluation.html" />
+    <link rel="prev" title="moabb.evaluations.CrossSubjectEvaluation" href="moabb.evaluations.CrossSubjectEvaluation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -445,7 +445,7 @@ document.write(`
     
     <li class="breadcrumb-item"><a href="../api.html" class="nav-link">API Reference</a></li>
     
-    <li class="breadcrumb-item active" aria-current="page">moabb.pipelines.utils_pytorch.InputShapeSetterEEG</li>
+    <li class="breadcrumb-item active" aria-current="page">moabb.evaluations.WithinSessionSplitter</li>
   </ul>
 </nav>
 </div>
@@ -462,32 +462,60 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="moabb-pipelines-utils-pytorch-inputshapesettereeg">
-<h1>moabb.pipelines.utils_pytorch.InputShapeSetterEEG<a class="headerlink" href="#moabb-pipelines-utils-pytorch-inputshapesettereeg" title="Permalink to this heading">#</a></h1>
-<dl class="py function">
-<dt class="sig sig-object py" id="moabb.pipelines.utils_pytorch.InputShapeSetterEEG">
-<span class="sig-prename descclassname"><span class="pre">moabb.pipelines.utils_pytorch.</span></span><span class="sig-name descname"><span class="pre">InputShapeSetterEEG</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params_list=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">input_dim_fn=&lt;function</span> <span class="pre">get_shape_from_baseconcat&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module_name='module'</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/pipelines/utils_pytorch.py#L97-L171"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.pipelines.utils_pytorch.InputShapeSetterEEG" title="Permalink to this definition">#</a></dt>
-<dd><p>Sets the input dimension of the PyTorch module to the input dimension
-of the training data.
-This can be of use when the shape of X is not known beforehand,
-e.g. when using a skorch model within an sklearn pipeline and
-grid-searching feature transformers, or using feature selection
-methods.InputShapeSetterEEG
-Basic usage:</p>
+  <section id="moabb-evaluations-withinsessionsplitter">
+<h1>moabb.evaluations.WithinSessionSplitter<a class="headerlink" href="#moabb-evaluations-withinsessionsplitter" title="Permalink to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="moabb.evaluations.WithinSessionSplitter">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moabb.evaluations.</span></span><span class="sig-name descname"><span class="pre">WithinSessionSplitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_folds:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shuffle:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state:</span> <span class="pre">~typing.Optional[int]</span> <span class="pre">=</span> <span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cv_class:</span> <span class="pre">type[sklearn.model_selection._split.BaseCrossValidator]</span> <span class="pre">=</span> <span class="pre">&lt;class</span> <span class="pre">'sklearn.model_selection._split.StratifiedKFold'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**cv_kwargs:</span> <span class="pre">dict</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/evaluations/splitters.py#L7-L103"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.evaluations.WithinSessionSplitter" title="Permalink to this definition">#</a></dt>
+<dd><p>Data splitter for within session evaluation.</p>
+<p>Within-session evaluation uses k-fold cross_validation to determine train
+and test sets for each subject in each session. This splitter
+assumes that all data from all subjects is already known and loaded.</p>
+<img alt="The schematic diagram of the WithinSession split" class="align-center" src="generated/docs/source/images/withinsess.png" />
+<p>The inner cross-validation strategy can be changed by passing the
+<cite>cv_class</cite> and <cite>cv_kwargs</cite> arguments. By default, it uses StratifiedKFold.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a>) – The list of parameters that define the
-input dimension in its <code class="docutils literal notranslate"><span class="pre">__init__</span></code> method.
-Usually the mandatory parameters from the model.</p></li>
-<li><p><strong>input_dim_fn</strong> (<em>callable</em><em>, </em><em>None</em><em> (</em><em>default=None</em><em>)</em>) – In case your <code class="docutils literal notranslate"><span class="pre">X</span></code> value is more complex and deriving the input
-dimension is not as easy as <code class="docutils literal notranslate"><span class="pre">X.shape[-1]</span></code> you can pass a callable
-to this parameter which takes <code class="docutils literal notranslate"><span class="pre">X</span></code> and returns the input dimension.</p></li>
-<li><p><strong>module_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> (</em><em>default='module'</em><em>)</em>) – Only needs change when you are using more than one module in your
-skorch model (e.g., in case of GANs).</p></li>
+<li><p><strong>n_folds</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>default=5</em>) – Number of folds. Must be at least 2. If</p></li>
+<li><p><strong>shuffle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – Whether to shuffle each class’s samples before splitting into batches.
+Note that the samples within each split will not be shuffled.</p></li>
+<li><p><strong>random_state</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>RandomState instance</em><em> or </em><em>None</em><em>, </em><em>default=None</em>) – Controls the randomness of splits. Only used when <cite>shuffle</cite> is True.
+Pass an int for reproducible output across multiple function calls.</p></li>
+<li><p><strong>cv_class</strong> (<em>cros-validation class</em><em>, </em><em>default=StratifiedKFold</em>) – Inner cross-validation strategy for splitting the sessions.</p></li>
+<li><p><strong>cv_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – Additional arguments to pass to the inner cross-validation strategy.</p></li>
 </ul>
 </dd>
 </dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="moabb.evaluations.WithinSessionSplitter.get_n_splits">
+<span class="sig-name descname"><span class="pre">get_n_splits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/evaluations/splitters.py#L69-L71"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.evaluations.WithinSessionSplitter.get_n_splits" title="Permalink to this definition">#</a></dt>
+<dd><p>Returns the number of splitting iterations in the cross-validator.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="moabb.evaluations.WithinSessionSplitter.split">
+<span class="sig-name descname"><span class="pre">split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/evaluations/splitters.py#L73-L103"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.evaluations.WithinSessionSplitter.split" title="Permalink to this definition">#</a></dt>
+<dd><p>Generate indices to split data into training and test set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>, </em><em>n_features</em><em>)</em>) – Training data, where <cite>n_samples</cite> is the number of samples
+and <cite>n_features</cite> is the number of features.</p></li>
+<li><p><strong>y</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em>) – The target variable for supervised learning problems.</p></li>
+<li><p><strong>groups</strong> (<em>array-like</em><em> of </em><em>shape</em><em> (</em><em>n_samples</em><em>,</em><em>)</em><em>, </em><em>default=None</em>) – Group labels for the samples used while splitting the dataset into
+train/test set.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Yields</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>train</strong> (<em>ndarray</em>) – The training set indices for that split.</p></li>
+<li><p><strong>test</strong> (<em>ndarray</em>) – The testing set indices for that split.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <div style='clear:both'></div></section>
@@ -504,20 +532,20 @@ skorch model (e.g., in case of GANs).</p></li>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader.html"
+       href="moabb.evaluations.CrossSubjectEvaluation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader</p>
+        <p class="prev-next-title">moabb.evaluations.CrossSubjectEvaluation</p>
       </div>
     </a>
     <a class="right-next"
-       href="moabb.analysis.plotting.score_plot.html"
+       href="moabb.evaluations.base.BaseEvaluation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">moabb.analysis.plotting.score_plot</p>
+        <p class="prev-next-title">moabb.evaluations.base.BaseEvaluation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -539,7 +567,11 @@ skorch model (e.g., in case of GANs).</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moabb.pipelines.utils_pytorch.InputShapeSetterEEG"><code class="docutils literal notranslate"><span class="pre">InputShapeSetterEEG()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moabb.evaluations.WithinSessionSplitter"><code class="docutils literal notranslate"><span class="pre">WithinSessionSplitter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moabb.evaluations.WithinSessionSplitter.get_n_splits"><code class="docutils literal notranslate"><span class="pre">WithinSessionSplitter.get_n_splits()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moabb.evaluations.WithinSessionSplitter.split"><code class="docutils literal notranslate"><span class="pre">WithinSessionSplitter.split()</span></code></a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
@@ -567,7 +599,7 @@ skorch model (e.g., in case of GANs).</p></li>
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

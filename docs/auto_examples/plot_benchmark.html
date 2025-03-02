@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../_static/moabb_logo.png" type="image/png">
-    <title>Examples of how to use MOABB to benchmark pipelines. &#8212; moabb 1.1.0-dev documentation</title>
+    <title>Examples of how to use MOABB to benchmark pipelines. &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -424,7 +424,7 @@ document.write(`
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Examples</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="changing_download_directory.html">Change Download Directory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="example_codecarbon.html">Benchmarking with MOABB showing the CO2 footprint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="load_model.html">Load Model (Scikit, Pytorch, Keras) with MOABB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="load_model.html">Load Model (Scikit, Keras) with MOABB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="noplot_bids_conversion.html">Convert a MOABB dataset to BIDS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="noplot_phmd_ml_spectrum.html">Spectral analysis of the trials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="noplot_vr_pc_p300_different_epoch_size.html">Changing epoch size in P300 VR dataset</a></li>
@@ -432,9 +432,7 @@ document.write(`
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Examples of how to use MOABB to benchmark pipelines.</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="plot_benchmark_DL.html">Benchmarking on MOABB with Tensorflow deep net architectures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_benchmark_braindecode.html">Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_benchmark_grid_search.html">Benchmarking with MOABB with Grid Search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plot_braindecode.html">Cross-session motor imagery with deep learning EEGNet v4 model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_cross_session_motor_imagery.html">Cross-Session Motor Imagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_cross_session_multiple_datasets.html">Cross-Session on Multiple Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plot_cross_subject_ssvep.html">Cross-Subject SSVEP</a></li>
@@ -521,6 +519,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.WithinSessionEvaluation.html">moabb.evaluations.WithinSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.CrossSessionEvaluation.html">moabb.evaluations.CrossSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.CrossSubjectEvaluation.html">moabb.evaluations.CrossSubjectEvaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.WithinSessionSplitter.html">moabb.evaluations.WithinSessionSplitter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.evaluations.base.BaseEvaluation.html">moabb.evaluations.base.BaseEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.paradigms.MotorImagery.html">moabb.paradigms.MotorImagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.paradigms.LeftRightImagery.html">moabb.paradigms.LeftRightImagery</a></li>
@@ -563,8 +562,6 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_deep_model.EEGNet.html">moabb.pipelines.utils_deep_model.EEGNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_deep_model.EEGNet_TC.html">moabb.pipelines.utils_deep_model.EEGNet_TC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_deep_model.TCN_block.html">moabb.pipelines.utils_deep_model.TCN_block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader.html">moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../generated/moabb.pipelines.utils_pytorch.InputShapeSetterEEG.html">moabb.pipelines.utils_pytorch.InputShapeSetterEEG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.analysis.plotting.score_plot.html">moabb.analysis.plotting.score_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.analysis.plotting.paired_plot.html">moabb.analysis.plotting.paired_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../generated/moabb.analysis.plotting.summary_plot.html">moabb.analysis.plotting.summary_plot</a></li>
@@ -659,11 +656,11 @@ to easily scale to many datasets.</p>
 <span class="c1">#</span>
 <span class="c1"># License: BSD (3-clause)</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">from</span> <span class="nn">moabb</span> <span class="kn">import</span> <a href="../generated/moabb.benchmark.html#moabb.benchmark" title="moabb.benchmark" class="sphx-glr-backref-module-moabb sphx-glr-backref-type-py-function"><span class="n">benchmark</span></a><span class="p">,</span> <a href="../generated/moabb.set_log_level.html#moabb.set_log_level" title="moabb.set_log_level" class="sphx-glr-backref-module-moabb sphx-glr-backref-type-py-function"><span class="n">set_log_level</span></a>
-<span class="kn">from</span> <span class="nn">moabb.analysis.plotting</span> <span class="kn">import</span> <a href="../generated/moabb.analysis.plotting.score_plot.html#moabb.analysis.plotting.score_plot" title="moabb.analysis.plotting.score_plot" class="sphx-glr-backref-module-moabb-analysis-plotting sphx-glr-backref-type-py-function"><span class="n">score_plot</span></a>
-<span class="kn">from</span> <span class="nn">moabb.paradigms</span> <span class="kn">import</span> <a href="../generated/moabb.paradigms.LeftRightImagery.html#moabb.paradigms.LeftRightImagery" title="moabb.paradigms.LeftRightImagery" class="sphx-glr-backref-module-moabb-paradigms sphx-glr-backref-type-py-class"><span class="n">LeftRightImagery</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/moabb.benchmark.html#moabb.benchmark" title="moabb.benchmark" class="sphx-glr-backref-module-moabb sphx-glr-backref-type-py-function"><span class="n">benchmark</span></a><span class="p">,</span> <a href="../generated/moabb.set_log_level.html#moabb.set_log_level" title="moabb.set_log_level" class="sphx-glr-backref-module-moabb sphx-glr-backref-type-py-function"><span class="n">set_log_level</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.analysis.plotting</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/moabb.analysis.plotting.score_plot.html#moabb.analysis.plotting.score_plot" title="moabb.analysis.plotting.score_plot" class="sphx-glr-backref-module-moabb-analysis-plotting sphx-glr-backref-type-py-function"><span class="n">score_plot</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.paradigms</span><span class="w"> </span><span class="kn">import</span> <a href="../generated/moabb.paradigms.LeftRightImagery.html#moabb.paradigms.LeftRightImagery" title="moabb.paradigms.LeftRightImagery" class="sphx-glr-backref-module-moabb-paradigms sphx-glr-backref-type-py-class"><span class="n">LeftRightImagery</span></a>
 
 
 <a href="../generated/moabb.set_log_level.html#moabb.set_log_level" title="moabb.set_log_level" class="sphx-glr-backref-module-moabb sphx-glr-backref-type-py-function"><span class="n">set_log_level</span></a><span class="p">(</span><span class="s2">&quot;info&quot;</span><span class="p">)</span>
@@ -773,192 +770,220 @@ folder, and the analysis &amp; figures are saved in the <code class="docutils li
 
   0%|                                               | 0.00/156M [00:00&lt;?, ?B/s]
 
-  0%|                                       | 71.7k/156M [00:00&lt;05:04, 512kB/s]
+  0%|                                       | 17.4k/156M [00:00&lt;18:14, 143kB/s]
 
-  0%|                                       | 280k/156M [00:00&lt;02:24, 1.08MB/s]
+  0%|                                       | 71.7k/156M [00:00&lt;08:11, 317kB/s]
 
-  1%|▎                                     | 1.03M/156M [00:00&lt;00:51, 3.02MB/s]
+  0%|                                        | 159k/156M [00:00&lt;05:14, 496kB/s]
 
-  2%|▊                                     | 3.42M/156M [00:00&lt;00:17, 8.55MB/s]
+  0%|                                        | 350k/156M [00:00&lt;02:50, 916kB/s]
 
-  5%|█▊                                    | 7.47M/156M [00:00&lt;00:09, 15.8MB/s]
+  0%|▏                                      | 629k/156M [00:00&lt;01:50, 1.40MB/s]
 
-  7%|██▊                                   | 11.6M/156M [00:00&lt;00:07, 20.6MB/s]
+  1%|▎                                     | 1.29M/156M [00:00&lt;00:56, 2.76MB/s]
 
- 10%|███▊                                  | 15.8M/156M [00:00&lt;00:05, 23.5MB/s]
+  1%|▍                                     | 1.99M/156M [00:00&lt;00:41, 3.71MB/s]
 
- 13%|████▊                                 | 20.0M/156M [00:01&lt;00:04, 28.0MB/s]
+  2%|▊                                     | 3.23M/156M [00:00&lt;00:26, 5.76MB/s]
 
- 15%|█████▌                                | 22.9M/156M [00:01&lt;00:04, 26.7MB/s]
+  4%|█▍                                    | 6.07M/156M [00:01&lt;00:13, 11.2MB/s]
 
- 17%|██████▍                               | 26.4M/156M [00:01&lt;00:04, 26.8MB/s]
+  5%|█▉                                    | 8.18M/156M [00:01&lt;00:11, 13.0MB/s]
 
- 20%|███████▍                              | 30.5M/156M [00:01&lt;00:04, 30.5MB/s]
+  7%|██▋                                   | 11.0M/156M [00:01&lt;00:08, 16.1MB/s]
 
- 22%|████████▏                             | 33.6M/156M [00:01&lt;00:04, 28.8MB/s]
+ 10%|███▋                                  | 15.1M/156M [00:01&lt;00:06, 21.1MB/s]
 
- 24%|████████▉                             | 37.0M/156M [00:01&lt;00:04, 28.1MB/s]
+ 12%|████▌                                 | 18.9M/156M [00:01&lt;00:06, 22.5MB/s]
 
- 26%|██████████                            | 41.2M/156M [00:01&lt;00:03, 31.7MB/s]
+ 15%|█████▌                                | 22.8M/156M [00:01&lt;00:05, 25.0MB/s]
 
- 28%|██████████▊                           | 44.4M/156M [00:01&lt;00:03, 29.9MB/s]
+ 16%|██████▏                               | 25.6M/156M [00:01&lt;00:05, 24.4MB/s]
 
- 31%|███████████▌                          | 47.8M/156M [00:02&lt;00:03, 28.8MB/s]
+ 19%|███████                               | 29.0M/156M [00:02&lt;00:05, 25.3MB/s]
 
- 33%|████████████▌                         | 51.8M/156M [00:02&lt;00:03, 31.8MB/s]
+ 20%|███████▋                              | 31.7M/156M [00:02&lt;00:05, 24.4MB/s]
 
- 35%|█████████████▍                        | 55.1M/156M [00:02&lt;00:03, 30.0MB/s]
+ 22%|████████▌                             | 35.1M/156M [00:02&lt;00:04, 25.3MB/s]
 
- 38%|██████████████▍                       | 59.1M/156M [00:02&lt;00:03, 30.6MB/s]
+ 24%|█████████▎                            | 38.1M/156M [00:02&lt;00:04, 25.1MB/s]
 
- 41%|███████████████▍                      | 63.5M/156M [00:02&lt;00:02, 34.1MB/s]
+ 26%|██████████                            | 41.3M/156M [00:02&lt;00:04, 25.3MB/s]
 
- 43%|████████████████▎                     | 67.0M/156M [00:02&lt;00:02, 32.8MB/s]
+ 28%|██████████▊                           | 44.3M/156M [00:02&lt;00:04, 25.0MB/s]
 
- 46%|█████████████████▍                    | 71.7M/156M [00:02&lt;00:02, 36.5MB/s]
+ 31%|███████████▋                          | 48.0M/156M [00:02&lt;00:04, 26.6MB/s]
 
- 48%|██████████████████▎                   | 75.4M/156M [00:02&lt;00:02, 35.7MB/s]
+ 33%|████████████▌                         | 51.5M/156M [00:02&lt;00:03, 27.0MB/s]
 
- 51%|███████████████████▍                  | 79.9M/156M [00:02&lt;00:01, 38.2MB/s]
+ 36%|█████████████▌                        | 55.6M/156M [00:03&lt;00:03, 27.1MB/s]
 
- 54%|████████████████████▍                 | 83.8M/156M [00:03&lt;00:01, 37.8MB/s]
+ 38%|██████████████▍                       | 59.3M/156M [00:03&lt;00:03, 28.0MB/s]
 
- 57%|█████████████████████▍                | 88.3M/156M [00:03&lt;00:01, 39.8MB/s]
+ 40%|███████████████▏                      | 62.6M/156M [00:03&lt;00:03, 27.8MB/s]
 
- 59%|██████████████████████▍               | 92.3M/156M [00:03&lt;00:01, 39.3MB/s]
+ 42%|████████████████                      | 66.2M/156M [00:03&lt;00:03, 28.2MB/s]
 
- 62%|███████████████████████▍              | 96.3M/156M [00:03&lt;00:01, 39.4MB/s]
+ 44%|████████████████▊                     | 69.1M/156M [00:03&lt;00:03, 26.6MB/s]
 
- 64%|█████████████████████████              | 100M/156M [00:03&lt;00:01, 39.0MB/s]
+ 47%|█████████████████▋                    | 72.7M/156M [00:03&lt;00:03, 27.6MB/s]
 
- 67%|██████████████████████████▏            | 105M/156M [00:03&lt;00:01, 40.3MB/s]
+ 49%|██████████████████▍                   | 75.8M/156M [00:03&lt;00:02, 26.9MB/s]
 
- 70%|███████████████████████████▏           | 109M/156M [00:03&lt;00:01, 40.1MB/s]
+ 50%|███████████████████▏                  | 78.8M/156M [00:03&lt;00:02, 26.0MB/s]
 
- 73%|████████████████████████████▎          | 114M/156M [00:03&lt;00:01, 41.3MB/s]
+ 53%|████████████████████                  | 82.5M/156M [00:04&lt;00:02, 27.1MB/s]
 
- 75%|█████████████████████████████▍         | 118M/156M [00:03&lt;00:00, 40.2MB/s]
+ 55%|████████████████████▉                 | 85.9M/156M [00:04&lt;00:02, 27.0MB/s]
 
- 78%|██████████████████████████████▌        | 122M/156M [00:03&lt;00:00, 41.5MB/s]
+ 57%|█████████████████████▋                | 89.2M/156M [00:04&lt;00:02, 26.8MB/s]
 
- 81%|███████████████████████████████▌       | 127M/156M [00:04&lt;00:00, 40.6MB/s]
+ 59%|██████████████████████▌               | 92.8M/156M [00:04&lt;00:02, 27.2MB/s]
 
- 84%|████████████████████████████████▋      | 131M/156M [00:04&lt;00:00, 41.2MB/s]
+ 61%|███████████████████████▎              | 95.9M/156M [00:04&lt;00:02, 26.6MB/s]
 
- 87%|█████████████████████████████████▊     | 135M/156M [00:04&lt;00:00, 41.0MB/s]
+ 63%|████████████████████████              | 99.1M/156M [00:04&lt;00:02, 26.5MB/s]
 
- 89%|██████████████████████████████████▊    | 140M/156M [00:04&lt;00:00, 41.5MB/s]
+ 65%|█████████████████████████▌             | 102M/156M [00:04&lt;00:02, 26.2MB/s]
 
- 92%|███████████████████████████████████▉   | 144M/156M [00:04&lt;00:00, 41.1MB/s]
+ 68%|██████████████████████████▍            | 106M/156M [00:04&lt;00:01, 26.7MB/s]
 
- 95%|█████████████████████████████████████  | 148M/156M [00:04&lt;00:00, 41.0MB/s]
+ 70%|███████████████████████████▏           | 109M/156M [00:04&lt;00:01, 26.5MB/s]
 
- 98%|██████████████████████████████████████ | 153M/156M [00:04&lt;00:00, 40.8MB/s]
+ 72%|████████████████████████████           | 112M/156M [00:05&lt;00:01, 27.3MB/s]
+
+ 74%|████████████████████████████▊          | 115M/156M [00:05&lt;00:01, 25.8MB/s]
+
+ 76%|█████████████████████████████▌         | 119M/156M [00:05&lt;00:01, 25.9MB/s]
+
+ 78%|██████████████████████████████▎        | 122M/156M [00:05&lt;00:01, 25.7MB/s]
+
+ 80%|███████████████████████████████▏       | 125M/156M [00:05&lt;00:01, 25.8MB/s]
+
+ 82%|███████████████████████████████▊       | 128M/156M [00:05&lt;00:01, 24.7MB/s]
+
+ 84%|████████████████████████████████▋      | 131M/156M [00:05&lt;00:01, 25.2MB/s]
+
+ 86%|█████████████████████████████████▎     | 134M/156M [00:05&lt;00:00, 24.2MB/s]
+
+ 88%|██████████████████████████████████▏    | 137M/156M [00:06&lt;00:00, 24.5MB/s]
+
+ 89%|██████████████████████████████████▊    | 140M/156M [00:06&lt;00:00, 23.7MB/s]
+
+ 91%|███████████████████████████████████▌   | 142M/156M [00:06&lt;00:00, 23.8MB/s]
+
+ 93%|████████████████████████████████████▏  | 145M/156M [00:06&lt;00:00, 23.1MB/s]
+
+ 95%|████████████████████████████████████▉  | 148M/156M [00:06&lt;00:00, 23.1MB/s]
+
+ 97%|█████████████████████████████████████▋ | 151M/156M [00:06&lt;00:00, 23.3MB/s]
+
+ 98%|██████████████████████████████████████▎| 154M/156M [00:06&lt;00:00, 23.1MB/s]
 
   0%|                                               | 0.00/156M [00:00&lt;?, ?B/s]
-100%|████████████████████████████████████████| 156M/156M [00:00&lt;00:00, 514GB/s]
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  60 events (all good), 0 – 5 s, baseline off, ~8.0 MB, data loaded,
+100%|████████████████████████████████████████| 156M/156M [00:00&lt;00:00, 507GB/s]
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 60 events (all good), 0 – 5 s (baseline off), ~8.0 MB, data loaded,
  &#39;left_hand&#39;: 30
  &#39;right_hand&#39;: 30&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  59 events (all good), 0 – 5 s, baseline off, ~7.9 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 59 events (all good), 0 – 5 s (baseline off), ~7.9 MB, data loaded,
  &#39;left_hand&#39;: 30
  &#39;right_hand&#39;: 29&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
 
-Zhou2016-WithinSession:  25%|##5       | 1/4 [00:13&lt;00:40, 13.34s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+Zhou2016-WithinSession:  25%|##5       | 1/4 [00:17&lt;00:51, 17.28s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  40 events (all good), 0 – 5 s, baseline off, ~5.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 40 events (all good), 0 – 5 s (baseline off), ~5.4 MB, data loaded,
  &#39;left_hand&#39;: 20
  &#39;right_hand&#39;: 20&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
- &#39;left_hand&#39;: 25
- &#39;right_hand&#39;: 25&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-
-Zhou2016-WithinSession:  50%|#####     | 2/4 [00:17&lt;00:16,  8.16s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
- &#39;left_hand&#39;: 25
- &#39;right_hand&#39;: 25&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
- &#39;left_hand&#39;: 25
- &#39;right_hand&#39;: 25&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
- &#39;left_hand&#39;: 25
- &#39;right_hand&#39;: 25&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
- &#39;left_hand&#39;: 25
- &#39;right_hand&#39;: 25&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
- &#39;left_hand&#39;: 25
- &#39;right_hand&#39;: 25&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
 
-Zhou2016-WithinSession:  75%|#######5  | 3/4 [00:22&lt;00:06,  6.57s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  40 events (all good), 0 – 5 s, baseline off, ~5.4 MB, data loaded,
+Zhou2016-WithinSession:  50%|#####     | 2/4 [00:21&lt;00:19,  9.70s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
+ &#39;left_hand&#39;: 25
+ &#39;right_hand&#39;: 25&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
+ &#39;left_hand&#39;: 25
+ &#39;right_hand&#39;: 25&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
+ &#39;left_hand&#39;: 25
+ &#39;right_hand&#39;: 25&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
+ &#39;left_hand&#39;: 25
+ &#39;right_hand&#39;: 25&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
+ &#39;left_hand&#39;: 25
+ &#39;right_hand&#39;: 25&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
+ &#39;left_hand&#39;: 25
+ &#39;right_hand&#39;: 25&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+
+Zhou2016-WithinSession:  75%|#######5  | 3/4 [00:26&lt;00:07,  7.34s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 40 events (all good), 0 – 5 s (baseline off), ~5.4 MB, data loaded,
  &#39;left_hand&#39;: 20
  &#39;right_hand&#39;: 20&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~6.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~6.7 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
 
-Zhou2016-WithinSession: 100%|##########| 4/4 [00:27&lt;00:00,  5.74s/it]
-Zhou2016-WithinSession: 100%|##########| 4/4 [00:27&lt;00:00,  6.75s/it]
+Zhou2016-WithinSession: 100%|##########| 4/4 [00:30&lt;00:00,  6.13s/it]
+Zhou2016-WithinSession: 100%|##########| 4/4 [00:30&lt;00:00,  7.62s/it]
     dataset     evaluation          pipeline  avg score
 0  Zhou2016  WithinSession         CSP + SVM   0.932315
 1  Zhou2016  WithinSession  Tangent Space LR   0.941601
@@ -975,8 +1000,8 @@ are saved in the <code class="docutils literal notranslate"><span class="pre">be
   sea.stripplot(
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  28.393 seconds)</p>
-<p><strong>Estimated memory usage:</strong>  204 MB</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  31.581 seconds)</p>
+<p><strong>Estimated memory usage:</strong>  359 MB</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/5657e54b8c692376a881117a99de998e/plot_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_benchmark.py</span></code></a></p>
@@ -1071,7 +1096,7 @@ are saved in the <code class="docutils literal notranslate"><span class="pre">be
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="_static/moabb_logo.png" type="image/png">
-    <title>API Reference &#8212; moabb 1.1.0-dev documentation</title>
+    <title>API Reference &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -424,7 +424,7 @@ document.write(`
 <li class="toctree-l1 has-children"><a class="reference internal" href="auto_examples/index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/changing_download_directory.html">Change Download Directory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/example_codecarbon.html">Benchmarking with MOABB showing the CO2 footprint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="auto_examples/load_model.html">Load Model (Scikit, Pytorch, Keras) with MOABB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_examples/load_model.html">Load Model (Scikit, Keras) with MOABB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/noplot_bids_conversion.html">Convert a MOABB dataset to BIDS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/noplot_phmd_ml_spectrum.html">Spectral analysis of the trials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/noplot_vr_pc_p300_different_epoch_size.html">Changing epoch size in P300 VR dataset</a></li>
@@ -432,9 +432,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_benchmark.html">Examples of how to use MOABB to benchmark pipelines.</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_benchmark_DL.html">Benchmarking on MOABB with Tensorflow deep net architectures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_benchmark_braindecode.html">Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_benchmark_grid_search.html">Benchmarking with MOABB with Grid Search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_braindecode.html">Cross-session motor imagery with deep learning EEGNet v4 model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_cross_session_motor_imagery.html">Cross-Session Motor Imagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_cross_session_multiple_datasets.html">Cross-Session on Multiple Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/plot_cross_subject_ssvep.html">Cross-Subject SSVEP</a></li>
@@ -521,6 +519,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.evaluations.WithinSessionEvaluation.html">moabb.evaluations.WithinSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.evaluations.CrossSessionEvaluation.html">moabb.evaluations.CrossSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.evaluations.CrossSubjectEvaluation.html">moabb.evaluations.CrossSubjectEvaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/moabb.evaluations.WithinSessionSplitter.html">moabb.evaluations.WithinSessionSplitter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.evaluations.base.BaseEvaluation.html">moabb.evaluations.base.BaseEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.paradigms.MotorImagery.html">moabb.paradigms.MotorImagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.paradigms.LeftRightImagery.html">moabb.paradigms.LeftRightImagery</a></li>
@@ -563,8 +562,6 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.pipelines.utils_deep_model.EEGNet.html">moabb.pipelines.utils_deep_model.EEGNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.pipelines.utils_deep_model.EEGNet_TC.html">moabb.pipelines.utils_deep_model.EEGNet_TC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.pipelines.utils_deep_model.TCN_block.html">moabb.pipelines.utils_deep_model.TCN_block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader.html">moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="generated/moabb.pipelines.utils_pytorch.InputShapeSetterEEG.html">moabb.pipelines.utils_pytorch.InputShapeSetterEEG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.analysis.plotting.score_plot.html">moabb.analysis.plotting.score_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.analysis.plotting.paired_plot.html">moabb.analysis.plotting.paired_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="generated/moabb.analysis.plotting.summary_plot.html">moabb.analysis.plotting.summary_plot</a></li>
@@ -818,16 +815,16 @@ on datasets (electrodes, number of trials, sessions, etc.)</p>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/moabb.datasets.Thielen2021.html#moabb.datasets.Thielen2021" title="moabb.datasets.Thielen2021"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Thielen2021</span></code></a>()</p></td>
 <td><p>c-VEP dataset from Thielen et al. (2021).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosBurstVEP40.html#moabb.datasets.CastillosBurstVEP40" title="moabb.datasets.CastillosBurstVEP40"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosBurstVEP40</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosBurstVEP40.html#moabb.datasets.CastillosBurstVEP40" title="moabb.datasets.CastillosBurstVEP40"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosBurstVEP40</span></code></a>([window_size])</p></td>
 <td><p>c-VEP and Burst-VEP dataset from Castillos et al. (2023).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosBurstVEP100.html#moabb.datasets.CastillosBurstVEP100" title="moabb.datasets.CastillosBurstVEP100"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosBurstVEP100</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosBurstVEP100.html#moabb.datasets.CastillosBurstVEP100" title="moabb.datasets.CastillosBurstVEP100"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosBurstVEP100</span></code></a>([window_size])</p></td>
 <td><p>c-VEP and Burst-VEP dataset from Castillos et al. (2023).</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosCVEP40.html#moabb.datasets.CastillosCVEP40" title="moabb.datasets.CastillosCVEP40"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosCVEP40</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosCVEP40.html#moabb.datasets.CastillosCVEP40" title="moabb.datasets.CastillosCVEP40"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosCVEP40</span></code></a>([window_size])</p></td>
 <td><p>c-VEP and Burst-VEP dataset from Castillos et al. (2023).</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosCVEP100.html#moabb.datasets.CastillosCVEP100" title="moabb.datasets.CastillosCVEP100"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosCVEP100</span></code></a>()</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/moabb.datasets.CastillosCVEP100.html#moabb.datasets.CastillosCVEP100" title="moabb.datasets.CastillosCVEP100"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CastillosCVEP100</span></code></a>([window_size])</p></td>
 <td><p>c-VEP and Burst-VEP dataset from Castillos et al. (2023).</p></td>
 </tr>
 </tbody>
@@ -966,6 +963,17 @@ accuracy, across-subject accuracy, or other transfer learning settings.</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.evaluations.CrossSubjectEvaluation.html#moabb.evaluations.CrossSubjectEvaluation" title="moabb.evaluations.CrossSubjectEvaluation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CrossSubjectEvaluation</span></code></a>(paradigm[, datasets, ...])</p></td>
 <td><p>Cross-subject evaluation performance.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="autosummary longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.evaluations.WithinSessionSplitter.html#moabb.evaluations.WithinSessionSplitter" title="moabb.evaluations.WithinSessionSplitter"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WithinSessionSplitter</span></code></a>(n_folds, shuffle, ...)</p></td>
+<td><p>Data splitter for within session evaluation.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1217,12 +1225,6 @@ end with a sklearn compatible estimator.</p>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.pipelines.utils_deep_model.TCN_block.html#moabb.pipelines.utils_deep_model.TCN_block" title="moabb.pipelines.utils_deep_model.TCN_block"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils_deep_model.TCN_block</span></code></a>(input_layer, ...)</p></td>
 <td><p>Temporal Convolutional Network (TCN), TCN_block from <a class="reference internal" href="generated/moabb.pipelines.utils_deep_model.TCN_block.html#r2eea69aed7b6-1" id="id17"><span>[R2eea69aed7b6-1]</span></a>.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="generated/moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader.html#moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader" title="moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils_pytorch.BraindecodeDatasetLoader</span></code></a>([...])</p></td>
-<td><p>Class to Load the data from MOABB in a format compatible with braindecode.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.pipelines.utils_pytorch.InputShapeSetterEEG.html#moabb.pipelines.utils_pytorch.InputShapeSetterEEG" title="moabb.pipelines.utils_pytorch.InputShapeSetterEEG"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils_pytorch.InputShapeSetterEEG</span></code></a>([...])</p></td>
-<td><p>Sets the input dimension of the PyTorch module to the input dimension of the training data.</p></td>
-</tr>
 </tbody>
 </table>
 </section>
@@ -1310,7 +1312,7 @@ end with a sklearn compatible estimator.</p>
 <td><p>Set the seed for random, numpy, TensorFlow and PyTorch.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/moabb.set_download_dir.html#moabb.set_download_dir" title="moabb.set_download_dir"><code class="xref py py-obj docutils literal notranslate"><span class="pre">set_download_dir</span></code></a>(path)</p></td>
-<td><p>Set the download directory if required to change from default mne path.</p></td>
+<td><p>Set the download directory if required to change from default MNE path.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/moabb.make_process_pipelines.html#moabb.make_process_pipelines" title="moabb.make_process_pipelines"><code class="xref py py-obj docutils literal notranslate"><span class="pre">make_process_pipelines</span></code></a>(processing, dataset)</p></td>
 <td><p>Shortcut for the method <a class="reference internal" href="generated/moabb.paradigms.base.BaseProcessing.html#moabb.paradigms.base.BaseProcessing.make_process_pipelines" title="moabb.paradigms.base.BaseProcessing.make_process_pipelines"><code class="xref py py-func docutils literal notranslate"><span class="pre">moabb.paradigms.base.BaseProcessing.make_process_pipelines()</span></code></a></p></td>
@@ -1384,7 +1386,9 @@ end with a sklearn compatible estimator.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-moabb.evaluations">Evaluations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Evaluations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Evaluations</a><ul class="nav section-nav flex-column">
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Base &amp; Utils</a></li>
 </ul>
 </li>
@@ -1440,7 +1444,7 @@ end with a sklearn compatible estimator.</p>
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

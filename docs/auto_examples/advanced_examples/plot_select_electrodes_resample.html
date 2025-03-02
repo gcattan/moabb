@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../../_static/moabb_logo.png" type="image/png">
-    <title>Select Electrodes and Resampling &#8212; moabb 1.1.0-dev documentation</title>
+    <title>Select Electrodes and Resampling &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -424,7 +424,7 @@ document.write(`
 <li class="toctree-l1 has-children"><a class="reference internal" href="../index.html">Examples</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../changing_download_directory.html">Change Download Directory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../example_codecarbon.html">Benchmarking with MOABB showing the CO2 footprint</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../load_model.html">Load Model (Scikit, Pytorch, Keras) with MOABB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../load_model.html">Load Model (Scikit, Keras) with MOABB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../noplot_bids_conversion.html">Convert a MOABB dataset to BIDS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../noplot_phmd_ml_spectrum.html">Spectral analysis of the trials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../noplot_vr_pc_p300_different_epoch_size.html">Changing epoch size in P300 VR dataset</a></li>
@@ -432,9 +432,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../plot_benchmark.html">Examples of how to use MOABB to benchmark pipelines.</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../plot_benchmark_DL.html">Benchmarking on MOABB with Tensorflow deep net architectures</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../plot_benchmark_braindecode.html">Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../plot_benchmark_grid_search.html">Benchmarking with MOABB with Grid Search</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../plot_braindecode.html">Cross-session motor imagery with deep learning EEGNet v4 model</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../plot_cross_session_motor_imagery.html">Cross-Session Motor Imagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../plot_cross_session_multiple_datasets.html">Cross-Session on Multiple Datasets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../plot_cross_subject_ssvep.html">Cross-Subject SSVEP</a></li>
@@ -521,6 +519,7 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.evaluations.WithinSessionEvaluation.html">moabb.evaluations.WithinSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.evaluations.CrossSessionEvaluation.html">moabb.evaluations.CrossSessionEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.evaluations.CrossSubjectEvaluation.html">moabb.evaluations.CrossSubjectEvaluation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.evaluations.WithinSessionSplitter.html">moabb.evaluations.WithinSessionSplitter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.evaluations.base.BaseEvaluation.html">moabb.evaluations.base.BaseEvaluation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.paradigms.MotorImagery.html">moabb.paradigms.MotorImagery</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.paradigms.LeftRightImagery.html">moabb.paradigms.LeftRightImagery</a></li>
@@ -563,8 +562,6 @@ document.write(`
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.pipelines.utils_deep_model.EEGNet.html">moabb.pipelines.utils_deep_model.EEGNet</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.pipelines.utils_deep_model.EEGNet_TC.html">moabb.pipelines.utils_deep_model.EEGNet_TC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.pipelines.utils_deep_model.TCN_block.html">moabb.pipelines.utils_deep_model.TCN_block</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader.html">moabb.pipelines.utils_pytorch.BraindecodeDatasetLoader</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.pipelines.utils_pytorch.InputShapeSetterEEG.html">moabb.pipelines.utils_pytorch.InputShapeSetterEEG</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.analysis.plotting.score_plot.html">moabb.analysis.plotting.score_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.analysis.plotting.paired_plot.html">moabb.analysis.plotting.paired_plot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../generated/moabb.analysis.plotting.summary_plot.html">moabb.analysis.plotting.summary_plot</a></li>
@@ -660,19 +657,19 @@ This tutorial demonstrates how to use this functionality.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: Sylvain Chevallier &lt;sylvain.chevallier@uvsq.fr&gt;</span>
 <span class="c1">#</span>
 <span class="c1"># License: BSD (3-clause)</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">mne.decoding</span> <span class="kn">import</span> <a href="https://mne.tools/stable/generated/mne.decoding.CSP.html#mne.decoding.CSP" title="mne.decoding.CSP" class="sphx-glr-backref-module-mne-decoding sphx-glr-backref-type-py-class"><span class="n">CSP</span></a>
-<span class="kn">from</span> <span class="nn">pyriemann.estimation</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="sklearn.base.BaseEstimator" class="sphx-glr-backref-module-sklearn-base sphx-glr-backref-type-py-class"><span class="n">Covariances</span></a>
-<span class="kn">from</span> <span class="nn">pyriemann.tangentspace</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="sklearn.base.BaseEstimator" class="sphx-glr-backref-module-sklearn-base sphx-glr-backref-type-py-class"><span class="n">TangentSpace</span></a>
-<span class="kn">from</span> <span class="nn">sklearn.discriminant_analysis</span> <span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span> <span class="k">as</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html#sklearn.discriminant_analysis.LinearDiscriminantAnalysis" title="sklearn.discriminant_analysis.LinearDiscriminantAnalysis" class="sphx-glr-backref-module-sklearn-discriminant_analysis sphx-glr-backref-type-py-class"><span class="n">LDA</span></a>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression" class="sphx-glr-backref-module-sklearn-linear_model sphx-glr-backref-type-py-class"><span class="n">LR</span></a>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html#sklearn.pipeline.make_pipeline" title="sklearn.pipeline.make_pipeline" class="sphx-glr-backref-module-sklearn-pipeline sphx-glr-backref-type-py-function"><span class="n">make_pipeline</span></a>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mne.decoding</span><span class="w"> </span><span class="kn">import</span> <a href="https://mne.tools/stable/generated/mne.decoding.CSP.html#mne.decoding.CSP" title="mne.decoding.CSP" class="sphx-glr-backref-module-mne-decoding sphx-glr-backref-type-py-class"><span class="n">CSP</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.estimation</span><span class="w"> </span><span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="sklearn.base.BaseEstimator" class="sphx-glr-backref-module-sklearn-base sphx-glr-backref-type-py-class"><span class="n">Covariances</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyriemann.tangentspace</span><span class="w"> </span><span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.base.BaseEstimator.html#sklearn.base.BaseEstimator" title="sklearn.base.BaseEstimator" class="sphx-glr-backref-module-sklearn-base sphx-glr-backref-type-py-class"><span class="n">TangentSpace</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.discriminant_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span> <span class="k">as</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.discriminant_analysis.LinearDiscriminantAnalysis.html#sklearn.discriminant_analysis.LinearDiscriminantAnalysis" title="sklearn.discriminant_analysis.LinearDiscriminantAnalysis" class="sphx-glr-backref-module-sklearn-discriminant_analysis sphx-glr-backref-type-py-class"><span class="n">LDA</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span> <span class="k">as</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression" title="sklearn.linear_model.LogisticRegression" class="sphx-glr-backref-module-sklearn-linear_model sphx-glr-backref-type-py-class"><span class="n">LR</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <a href="https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.make_pipeline.html#sklearn.pipeline.make_pipeline" title="sklearn.pipeline.make_pipeline" class="sphx-glr-backref-module-sklearn-pipeline sphx-glr-backref-type-py-function"><span class="n">make_pipeline</span></a>
 
-<span class="kn">import</span> <span class="nn">moabb.analysis.plotting</span> <span class="k">as</span> <span class="nn">moabb_plt</span>
-<span class="kn">from</span> <span class="nn">moabb.datasets</span> <span class="kn">import</span> <a href="../../generated/moabb.datasets.BNCI2014_001.html#moabb.datasets.BNCI2014_001" title="moabb.datasets.BNCI2014_001" class="sphx-glr-backref-module-moabb-datasets sphx-glr-backref-type-py-class"><span class="n">BNCI2014_001</span></a><span class="p">,</span> <a href="../../generated/moabb.datasets.Zhou2016.html#moabb.datasets.Zhou2016" title="moabb.datasets.Zhou2016" class="sphx-glr-backref-module-moabb-datasets sphx-glr-backref-type-py-class"><span class="n">Zhou2016</span></a>
-<span class="kn">from</span> <span class="nn">moabb.datasets.utils</span> <span class="kn">import</span> <a href="../../generated/moabb.datasets.utils.find_intersecting_channels.html#moabb.datasets.utils.find_intersecting_channels" title="moabb.datasets.utils.find_intersecting_channels" class="sphx-glr-backref-module-moabb-datasets-utils sphx-glr-backref-type-py-function"><span class="n">find_intersecting_channels</span></a>
-<span class="kn">from</span> <span class="nn">moabb.evaluations</span> <span class="kn">import</span> <a href="../../generated/moabb.evaluations.WithinSessionEvaluation.html#moabb.evaluations.WithinSessionEvaluation" title="moabb.evaluations.WithinSessionEvaluation" class="sphx-glr-backref-module-moabb-evaluations sphx-glr-backref-type-py-class"><span class="n">WithinSessionEvaluation</span></a>
-<span class="kn">from</span> <span class="nn">moabb.paradigms</span> <span class="kn">import</span> <a href="../../generated/moabb.paradigms.LeftRightImagery.html#moabb.paradigms.LeftRightImagery" title="moabb.paradigms.LeftRightImagery" class="sphx-glr-backref-module-moabb-paradigms sphx-glr-backref-type-py-class"><span class="n">LeftRightImagery</span></a>
+<span class="kn">import</span><span class="w"> </span><span class="nn">moabb.analysis.plotting</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">moabb_plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.datasets</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/moabb.datasets.BNCI2014_001.html#moabb.datasets.BNCI2014_001" title="moabb.datasets.BNCI2014_001" class="sphx-glr-backref-module-moabb-datasets sphx-glr-backref-type-py-class"><span class="n">BNCI2014_001</span></a><span class="p">,</span> <a href="../../generated/moabb.datasets.Zhou2016.html#moabb.datasets.Zhou2016" title="moabb.datasets.Zhou2016" class="sphx-glr-backref-module-moabb-datasets sphx-glr-backref-type-py-class"><span class="n">Zhou2016</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.datasets.utils</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/moabb.datasets.utils.find_intersecting_channels.html#moabb.datasets.utils.find_intersecting_channels" title="moabb.datasets.utils.find_intersecting_channels" class="sphx-glr-backref-module-moabb-datasets-utils sphx-glr-backref-type-py-function"><span class="n">find_intersecting_channels</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.evaluations</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/moabb.evaluations.WithinSessionEvaluation.html#moabb.evaluations.WithinSessionEvaluation" title="moabb.evaluations.WithinSessionEvaluation" class="sphx-glr-backref-module-moabb-evaluations sphx-glr-backref-type-py-class"><span class="n">WithinSessionEvaluation</span></a>
+<span class="kn">from</span><span class="w"> </span><span class="nn">moabb.paradigms</span><span class="w"> </span><span class="kn">import</span> <a href="../../generated/moabb.paradigms.LeftRightImagery.html#moabb.paradigms.LeftRightImagery" title="moabb.paradigms.LeftRightImagery" class="sphx-glr-backref-module-moabb-paradigms sphx-glr-backref-type-py-class"><span class="n">LeftRightImagery</span></a>
 </pre></div>
 </div>
 <section id="datasets">
@@ -707,27 +704,27 @@ a sampling rate of 200 Hz.</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">head</span><span class="p">())</span>
 </pre></div>
 </div>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Zhou2016-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  60 events (all good), 0 – 5 s, baseline off, ~1.7 MB, data loaded,
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Zhou2016-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 60 events (all good), 0 – 5 s (baseline off), ~1.7 MB, data loaded,
  &#39;left_hand&#39;: 30
  &#39;right_hand&#39;: 30&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  59 events (all good), 0 – 5 s, baseline off, ~1.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 59 events (all good), 0 – 5 s (baseline off), ~1.7 MB, data loaded,
  &#39;left_hand&#39;: 30
  &#39;right_hand&#39;: 29&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
@@ -738,27 +735,27 @@ No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 
-Zhou2016-WithinSession:  50%|#####     | 1/2 [00:05&lt;00:05,  5.89s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+Zhou2016-WithinSession:  50%|#####     | 1/2 [00:05&lt;00:05,  5.25s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  40 events (all good), 0 – 5 s, baseline off, ~1.2 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 40 events (all good), 0 – 5 s (baseline off), ~1.2 MB, data loaded,
  &#39;left_hand&#39;: 20
  &#39;right_hand&#39;: 20&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
@@ -769,107 +766,54 @@ No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 
-Zhou2016-WithinSession: 100%|##########| 2/2 [00:11&lt;00:00,  5.44s/it]
-Zhou2016-WithinSession: 100%|##########| 2/2 [00:11&lt;00:00,  5.51s/it]
+Zhou2016-WithinSession: 100%|##########| 2/2 [00:09&lt;00:00,  4.74s/it]
+Zhou2016-WithinSession: 100%|##########| 2/2 [00:09&lt;00:00,  4.82s/it]
 
-BNCI2014-001-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+BNCI2014-001-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-No hdf5_path provided, models will not be saved.
-No hdf5_path provided, models will not be saved.
-No hdf5_path provided, models will not be saved.
-No hdf5_path provided, models will not be saved.
-
-BNCI2014-001-WithinSession:  50%|#####     | 1/2 [00:04&lt;00:04,  4.80s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
@@ -878,14 +822,67 @@ No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 
-BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:09&lt;00:00,  4.66s/it]
-BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:09&lt;00:00,  4.68s/it]
+BNCI2014-001-WithinSession:  50%|#####     | 1/2 [00:06&lt;00:06,  6.03s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+No hdf5_path provided, models will not be saved.
+No hdf5_path provided, models will not be saved.
+No hdf5_path provided, models will not be saved.
+No hdf5_path provided, models will not be saved.
+
+BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:12&lt;00:00,  6.21s/it]
+BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:12&lt;00:00,  6.18s/it]
       score      time  samples subject  ... channels  n_sessions   dataset pipeline
-0  0.844823  0.058703    119.0       1  ...        3           3  Zhou2016    ts+lr
-1  0.900000  0.049660    100.0       1  ...        3           3  Zhou2016    ts+lr
-2  0.950000  0.051028    100.0       1  ...        3           3  Zhou2016    ts+lr
-3  0.918000  0.050913    100.0       2  ...        3           3  Zhou2016    ts+lr
-4  0.817284  0.046108     90.0       2  ...        3           3  Zhou2016    ts+lr
+0  0.860606  0.056017    119.0       1  ...        3           3  Zhou2016    ts+lr
+1  0.930000  0.048314    100.0       1  ...        3           3  Zhou2016    ts+lr
+2  0.928000  0.048582    100.0       1  ...        3           3  Zhou2016    ts+lr
+3  0.914000  0.049485    100.0       2  ...        3           3  Zhou2016    ts+lr
+4  0.807407  0.043897     90.0       2  ...        3           3  Zhou2016    ts+lr
 
 [5 rows x 9 columns]
 </pre></div>
@@ -908,27 +905,27 @@ as well as the list of datasets with valid channels.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Searching dataset: Zhou2016
 Searching dataset: BNCI2014_001
 
-Zhou2016-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  60 events (all good), 0 – 5 s, baseline off, ~1.7 MB, data loaded,
+Zhou2016-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 60 events (all good), 0 – 5 s (baseline off), ~1.7 MB, data loaded,
  &#39;left_hand&#39;: 30
  &#39;right_hand&#39;: 30&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  59 events (all good), 0 – 5 s, baseline off, ~1.7 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 59 events (all good), 0 – 5 s (baseline off), ~1.7 MB, data loaded,
  &#39;left_hand&#39;: 30
  &#39;right_hand&#39;: 29&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
@@ -939,27 +936,27 @@ No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 
-Zhou2016-WithinSession:  50%|#####     | 1/2 [00:05&lt;00:05,  5.49s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+Zhou2016-WithinSession:  50%|#####     | 1/2 [00:04&lt;00:04,  4.88s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  40 events (all good), 0 – 5 s, baseline off, ~1.2 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 40 events (all good), 0 – 5 s (baseline off), ~1.2 MB, data loaded,
  &#39;left_hand&#39;: 20
  &#39;right_hand&#39;: 20&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  50 events (all good), 0 – 5 s, baseline off, ~1.4 MB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 50 events (all good), 0 – 5 s (baseline off), ~1.4 MB, data loaded,
  &#39;left_hand&#39;: 25
  &#39;right_hand&#39;: 25&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
@@ -970,107 +967,54 @@ No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 
-Zhou2016-WithinSession: 100%|##########| 2/2 [00:10&lt;00:00,  5.14s/it]
-Zhou2016-WithinSession: 100%|##########| 2/2 [00:10&lt;00:00,  5.20s/it]
+Zhou2016-WithinSession: 100%|##########| 2/2 [00:08&lt;00:00,  4.41s/it]
+Zhou2016-WithinSession: 100%|##########| 2/2 [00:08&lt;00:00,  4.48s/it]
 
-BNCI2014-001-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+BNCI2014-001-WithinSession:   0%|          | 0/2 [00:00&lt;?, ?it/s]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-No hdf5_path provided, models will not be saved.
-No hdf5_path provided, models will not be saved.
-No hdf5_path provided, models will not be saved.
-No hdf5_path provided, models will not be saved.
-
-BNCI2014-001-WithinSession:  50%|#####     | 1/2 [00:04&lt;00:04,  4.58s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
- &#39;left_hand&#39;: 12
- &#39;right_hand&#39;: 12&gt;
-  warn(f&quot;warnEpochs {epochs}&quot;)
-/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:279: UserWarning: warnEpochs &lt;Epochs |  24 events (all good), 2 – 6 s, baseline off, ~582 kB, data loaded,
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
  &#39;left_hand&#39;: 12
  &#39;right_hand&#39;: 12&gt;
   warn(f&quot;warnEpochs {epochs}&quot;)
@@ -1079,14 +1023,67 @@ No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 No hdf5_path provided, models will not be saved.
 
-BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:09&lt;00:00,  4.54s/it]
-BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:09&lt;00:00,  4.54s/it]
+BNCI2014-001-WithinSession:  50%|#####     | 1/2 [00:05&lt;00:05,  5.91s/it]/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+/home/runner/work/moabb/moabb/moabb/datasets/preprocessing.py:278: UserWarning: warnEpochs &lt;Epochs | 24 events (all good), 2 – 6 s (baseline off), ~582 kB, data loaded,
+ &#39;left_hand&#39;: 12
+ &#39;right_hand&#39;: 12&gt;
+  warn(f&quot;warnEpochs {epochs}&quot;)
+No hdf5_path provided, models will not be saved.
+No hdf5_path provided, models will not be saved.
+No hdf5_path provided, models will not be saved.
+No hdf5_path provided, models will not be saved.
+
+BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:11&lt;00:00,  5.95s/it]
+BNCI2014-001-WithinSession: 100%|##########| 2/2 [00:11&lt;00:00,  5.94s/it]
       score      time  samples subject  ... channels  n_sessions   dataset pipeline
-0  0.865657  0.058344    119.0       1  ...        3           3  Zhou2016    ts+lr
-1  0.916000  0.050551    100.0       1  ...        3           3  Zhou2016    ts+lr
-2  0.932000  0.049934    100.0       1  ...        3           3  Zhou2016    ts+lr
-3  0.924000  0.050405    100.0       2  ...        3           3  Zhou2016    ts+lr
-4  0.829630  0.045624     90.0       2  ...        3           3  Zhou2016    ts+lr
+0  0.871212  0.056837    119.0       1  ...        3           3  Zhou2016    ts+lr
+1  0.924000  0.049396    100.0       1  ...        3           3  Zhou2016    ts+lr
+2  0.934000  0.048311    100.0       1  ...        3           3  Zhou2016    ts+lr
+3  0.916000  0.049650    100.0       2  ...        3           3  Zhou2016    ts+lr
+4  0.841975  0.044000     90.0       2  ...        3           3  Zhou2016    ts+lr
 
 [5 rows x 9 columns]
 </pre></div>
@@ -1100,8 +1097,8 @@ regression computed in the tangent space of the covariance matrices.</p>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<img src="../../_images/sphx_glr_plot_select_electrodes_resample_001.png" srcset="../../_images/sphx_glr_plot_select_electrodes_resample_001.png" alt="plot select electrodes resample" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  50.682 seconds)</p>
-<p><strong>Estimated memory usage:</strong>  437 MB</p>
+<img src="../../_images/sphx_glr_plot_select_electrodes_resample_001.png" srcset="../../_images/sphx_glr_plot_select_electrodes_resample_001.png" alt="plot select electrodes resample" class = "sphx-glr-single-img"/><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  54.475 seconds)</p>
+<p><strong>Estimated memory usage:</strong>  575 MB</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-advanced-examples-plot-select-electrodes-resample-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../../_downloads/83c876b60654b8a0b9ebaf6714ef3607/plot_select_electrodes_resample.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_select_electrodes_resample.py</span></code></a></p>
@@ -1193,7 +1190,7 @@ regression computed in the tangent space of the covariance matrices.</p>
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

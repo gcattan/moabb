@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../_static/moabb_logo.png" type="image/png">
-    <title>moabb.datasets.Huebner2017 &#8212; moabb 1.1.0-dev documentation</title>
+    <title>moabb.datasets.Huebner2017 &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -474,19 +474,19 @@ dataset from Hübner et al 2017 <a class="reference internal" href="#r0a211c89d3
 <p class="admonition-title">Dataset summary</p>
 <table class="table">
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 8%" />
-<col style="width: 25%" />
-<col style="width: 22%" />
-<col style="width: 22%" />
-<col style="width: 15%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 26%" />
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 16%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>#Subj</p></th>
 <th class="head"><p>#Chan</p></th>
 <th class="head"><p>#Trials / class</p></th>
-<th class="head"><p>Trials length</p></th>
-<th class="head"><p>Sampling rate</p></th>
+<th class="head"><p>Freq(Hz)</p></th>
+<th class="head"><p>Trials length(s)</p></th>
 <th class="head"><p>#Sessions</p></th>
 </tr>
 </thead>
@@ -494,8 +494,8 @@ dataset from Hübner et al 2017 <a class="reference internal" href="#r0a211c89d3
 <tr class="row-even"><td><p>13</p></td>
 <td><p>31</p></td>
 <td><p>364 NT / 112 T</p></td>
-<td><p>0.9s</p></td>
-<td><p>1000Hz</p></td>
+<td><p>1000</p></td>
+<td><p>0.9</p></td>
 <td><p>3</p></td>
 </tr>
 </tbody>
@@ -524,7 +524,7 @@ breathing activity were recorded.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>interval</strong> (<em>array_like</em>) – range/interval in milliseconds in which the brain response/activity relative to an event/stimulus onset lies in.
 Default is set to [-.2, .7].</p></li>
-<li><p><strong>raw_slice_offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><em>None</em>) – defines the crop offset in milliseconds before the first and after the last event (target or non-targeet) onset.
+<li><p><strong>raw_slice_offset</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>None</em>) – defines the crop offset in milliseconds before the first and after the last event (target or non-targeet) onset.
 Default None which crops with an offset 2,000 ms.</p></li>
 </ul>
 </dd>
@@ -620,7 +620,7 @@ PLOS ONE 12(4): e0175856.
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

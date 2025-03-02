@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../_static/moabb_logo.png" type="image/png">
-    <title>moabb.datasets.CastillosBurstVEP40 &#8212; moabb 1.1.0-dev documentation</title>
+    <title>moabb.datasets.CastillosBurstVEP40 &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -466,7 +466,7 @@ document.write(`
 <h1>moabb.datasets.CastillosBurstVEP40<a class="headerlink" href="#moabb-datasets-castillosburstvep40" title="Permalink to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="moabb.datasets.CastillosBurstVEP40">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moabb.datasets.</span></span><span class="sig-name descname"><span class="pre">CastillosBurstVEP40</span></span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/datasets/castillos2023.py#L345-L396"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.datasets.CastillosBurstVEP40" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">moabb.datasets.</span></span><span class="sig-name descname"><span class="pre">CastillosBurstVEP40</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em><span class="sig-paren">)</span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/datasets/castillos2023.py#L347-L400"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.datasets.CastillosBurstVEP40" title="Permalink to this definition">#</a></dt>
 <dd><p>c-VEP and Burst-VEP dataset from Castillos et al. (2023)</p>
 <div class="admonition-dataset-summary admonition">
 <p class="admonition-title">Dataset summary</p>
@@ -475,9 +475,9 @@ document.write(`
 <col style="width: 4%" />
 <col style="width: 4%" />
 <col style="width: 11%" />
-<col style="width: 10%" />
-<col style="width: 10%" />
+<col style="width: 6%" />
 <col style="width: 7%" />
+<col style="width: 13%" />
 <col style="width: 11%" />
 <col style="width: 11%" />
 <col style="width: 12%" />
@@ -488,9 +488,9 @@ document.write(`
 <tr class="row-odd"><th class="head"><p>#Subj</p></th>
 <th class="head"><p>#Chan</p></th>
 <th class="head"><p>#Trials / class</p></th>
-<th class="head"><p>Trials length</p></th>
-<th class="head"><p>Sampling rate</p></th>
+<th class="head"><p>Freq(Hz)</p></th>
 <th class="head"><p>#Sessions</p></th>
+<th class="head"><p>Trials length (s)</p></th>
 <th class="head"><p>#Trial classes</p></th>
 <th class="head"><p>#Epochs classes</p></th>
 <th class="head"><p>#Epochs / class</p></th>
@@ -502,9 +502,9 @@ document.write(`
 <tr class="row-even"><td><p>12</p></td>
 <td><p>32</p></td>
 <td><p>15/15/15/15</p></td>
-<td><p>2.2s</p></td>
-<td><p>500Hz</p></td>
+<td><p>500</p></td>
 <td><p>1</p></td>
+<td><p>2.2</p></td>
 <td><p>4</p></td>
 <td><p>2</p></td>
 <td><p>5820 NT / 1200 T</p></td>
@@ -630,7 +630,7 @@ DOI: <a class="reference external" href="https://doi.org/10.1016/j.neuroimage.20
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>

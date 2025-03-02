@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
     <link rel="moabb icon" sizes="180x180" href="../_static/moabb_logo.png" type="image/png">
-    <title>moabb.setup_seed &#8212; moabb 1.1.0-dev documentation</title>
+    <title>moabb.setup_seed &#8212; moabb 1.1.1-dev documentation</title>
   
   
   
@@ -466,11 +466,11 @@ document.write(`
 <h1>moabb.setup_seed<a class="headerlink" href="#moabb-setup-seed" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="moabb.setup_seed">
-<span class="sig-prename descclassname"><span class="pre">moabb.</span></span><span class="sig-name descname"><span class="pre">setup_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></span></span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/utils.py#L95-L114"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.setup_seed" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">moabb.</span></span><span class="sig-name descname"><span class="pre">setup_seed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><span class="pre">None</span></a></span></span><a class="reference external" href="https://github.com/NeuroTechX/moabb/blob/develop/moabb/utils.py#L96-L115"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#moabb.setup_seed" title="Permalink to this definition">#</a></dt>
 <dd><p>Set the seed for random, numpy, TensorFlow and PyTorch.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The random seed to use.</p>
+<dd class="field-odd"><p><strong>seed</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – The random seed to use.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>None</p>
@@ -480,18 +480,12 @@ document.write(`
 
 <section id="examples-using-moabb-setup-seed">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">moabb.setup_seed</span></code><a class="headerlink" href="#examples-using-moabb-setup-seed" title="Permalink to this heading">#</a></h2>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use load the pretrained pipeline in MOABB."><img alt="Load Model (Scikit, Pytorch, Keras) with MOABB" src="../_images/sphx_glr_load_model_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/load_model.html#sphx-glr-auto-examples-load-model-py"><span class="std std-ref">Load Model (Scikit, Pytorch, Keras) with MOABB</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Load Model (Scikit, Pytorch, Keras) with MOABB</div>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to use load the pretrained pipeline in MOABB."><img alt="Load Model (Scikit, Keras) with MOABB" src="../_images/sphx_glr_load_model_thumb.png" />
+<p><a class="reference internal" href="../auto_examples/load_model.html#sphx-glr-auto-examples-load-model-py"><span class="std std-ref">Load Model (Scikit, Keras) with MOABB</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Load Model (Scikit, Keras) with MOABB</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Benchmarking on MOABB with Tensorflow deep net architectures"><img alt="Benchmarking on MOABB with Tensorflow deep net architectures" src="../_images/sphx_glr_plot_benchmark_DL_thumb.png" />
 <p><a class="reference internal" href="../auto_examples/plot_benchmark_DL.html#sphx-glr-auto-examples-plot-benchmark-dl-py"><span class="std std-ref">Benchmarking on MOABB with Tensorflow deep net architectures</span></a></p>
   <div class="sphx-glr-thumbnail-title">Benchmarking on MOABB with Tensorflow deep net architectures</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures"><img alt="Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures" src="../_images/sphx_glr_plot_benchmark_braindecode_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plot_benchmark_braindecode.html#sphx-glr-auto-examples-plot-benchmark-braindecode-py"><span class="std std-ref">Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Benchmarking on MOABB with Braindecode (PyTorch) deep net architectures</div>
-</div><div class="sphx-glr-thumbcontainer" tooltip="Cross-session motor imagery with deep learning EEGNet v4 model"><img alt="Cross-session motor imagery with deep learning EEGNet v4 model" src="../_images/sphx_glr_plot_braindecode_thumb.png" />
-<p><a class="reference internal" href="../auto_examples/plot_braindecode.html#sphx-glr-auto-examples-plot-braindecode-py"><span class="std std-ref">Cross-session motor imagery with deep learning EEGNet v4 model</span></a></p>
-  <div class="sphx-glr-thumbnail-title">Cross-session motor imagery with deep learning EEGNet v4 model</div>
 </div></div><div style='clear:both'></div></section>
 </section>
 
@@ -571,7 +565,7 @@ document.write(`
         <div class="footer-item">
   <p class="copyright">
     
-      © Copyright 2018-2024 MOABB contributors.
+      © Copyright 2018-2025 MOABB contributors.
       <br/>
     
   </p>
